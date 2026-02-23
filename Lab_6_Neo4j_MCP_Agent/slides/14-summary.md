@@ -4,7 +4,7 @@
 
 | Lab | What You Built |
 |-----|----------------|
-| **Lab 1** | Neo4j Aura database with SEC filings knowledge graph |
+| **Lab 1** | Neo4j Aura database with manufacturing knowledge graph |
 | **Lab 2** | No-code Aura Agent with multiple retrieval patterns |
 | **Lab 4** | Understanding of agent architecture with LangGraph |
 | **Lab 5** | GraphRAG pipelines with neo4j-graphrag library |

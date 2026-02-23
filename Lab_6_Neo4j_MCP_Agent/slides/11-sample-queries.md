@@ -9,25 +9,25 @@ query("What is the database schema?")
 
 ### Simple Counts
 ```python
-query("How many companies are in the database?")
-query("How many risk factors exist?")
+query("How many components are in the database?")
+query("How many requirements exist?")
 ```
 
 ### Relationship Traversal
 ```python
-query("What companies does BlackRock own?")
-query("What risk factors does Apple face?")
+query("What requirements does the HVB_3900 component have?")
+query("What defects have been found in testing?")
 ```
 
 ### Comparative Analysis
 ```python
-query("Which company has the most risk factors?")
-query("What risks do Apple and Microsoft share?")
+query("Which component has the most requirements?")
+query("What technology domains does the R2D2 product have?")
 ```
 
 ### Complex Questions
 ```python
-query("What products are mentioned by companies facing cybersecurity risks?")
+query("What defects have been detected for components in the Electric Powertrain domain?")
 ```
 
 ---

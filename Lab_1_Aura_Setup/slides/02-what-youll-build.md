@@ -2,22 +2,22 @@
 
 ## The Knowledge Graph
 
-Your database will contain SEC 10-K filings from major tech companies:
+Your database will contain automotive manufacturing product development data:
 
 | Entity Type | Examples |
 |-------------|----------|
-| **Companies** | Apple, Microsoft, NVIDIA, Meta |
-| **Risk Factors** | Cybersecurity, supply chain, regulatory |
-| **Products** | iPhone, Azure, GPUs, advertising |
-| **Executives** | CEOs, CFOs, board members |
-| **Asset Managers** | BlackRock, Vanguard, Berkshire Hathaway |
+| **Products** | R2D2 (autonomous robot vehicle) |
+| **Technology Domains** | Electric Powertrain, Chassis, Body, Infotainment |
+| **Components** | HVB_3900 (High-Voltage Battery), PDU_1500, ECU_2100 |
+| **Requirements** | Engineering specifications (thermal, safety, performance) |
+| **Defects & Changes** | Test defects, change proposals with cost/risk |
 
 ## Relationships
 
 ```
-(BlackRock)-[:OWNS]->(Apple)
-(Apple)-[:FACES_RISK]->(Cybersecurity Threats)
-(Apple)-[:MENTIONS]->(iPhone)
+(R2D2)-[:PRODUCT_HAS_DOMAIN]->(Electric Powertrain)
+(Electric Powertrain)-[:DOMAIN_HAS_COMPONENT]->(HVB_3900)
+(HVB_3900)-[:COMPONENT_HAS_REQ]->(Thermal Management Req)
 ```
 
 ---

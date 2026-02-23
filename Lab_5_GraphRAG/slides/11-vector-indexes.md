@@ -12,7 +12,7 @@ SET c.embedding = $vector
 ## Creating a Vector Index
 
 ```cypher
-CREATE VECTOR INDEX chunkEmbeddings IF NOT EXISTS
+CREATE VECTOR INDEX requirement_embeddings IF NOT EXISTS
 FOR (c:Chunk) ON (c.embedding)
 OPTIONS {indexConfig: {
   `vector.dimensions`: 1024,
@@ -27,7 +27,7 @@ OPTIONS {indexConfig: {
 ## Similarity Search
 
 ```cypher
-CALL db.index.vector.queryNodes('chunkEmbeddings', 5, $query_embedding)
+CALL db.index.vector.queryNodes('requirement_embeddings', 5, $query_embedding)
 YIELD node, score
 RETURN node.text, score
 ```

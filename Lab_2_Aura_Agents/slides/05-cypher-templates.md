@@ -5,9 +5,9 @@
 Cypher templates are pre-defined queries with parameters:
 
 ```cypher
-MATCH (c:Company {name: $company_name})
-OPTIONAL MATCH (c)-[:FACES_RISK]->(r:RiskFactor)
-RETURN c.name, collect(r.name) AS risks
+MATCH (comp:Component {name: $component_name})
+OPTIONAL MATCH (comp)-[:COMPONENT_HAS_REQ]->(req:Requirement)
+RETURN comp.name, collect(req.name) AS requirements
 ```
 
 ## Why Use Templates?
@@ -21,8 +21,8 @@ RETURN c.name, collect(r.name) AS risks
 
 ## Templates You'll Create
 
-- `get_company_overview` - Company info + risks + investors
-- `find_shared_risks` - Risks two companies have in common
+- `get_component_overview` - Component info + requirements + defects
+- `find_shared_requirements` - Requirements two components share
 
 ---
 

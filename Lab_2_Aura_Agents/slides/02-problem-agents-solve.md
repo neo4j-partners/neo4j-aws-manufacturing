@@ -5,9 +5,9 @@
 Your knowledge graph is powerful, but querying it requires Cypher:
 
 ```cypher
-MATCH (c:Company)-[:FACES_RISK]->(r:RiskFactor)
-WHERE c.name = 'APPLE INC'
-RETURN r.name
+MATCH (comp:Component)-[:COMPONENT_HAS_REQ]->(req:Requirement)
+WHERE comp.name = 'HVB_3900'
+RETURN req.name
 ```
 
 **Most users can't write this.**

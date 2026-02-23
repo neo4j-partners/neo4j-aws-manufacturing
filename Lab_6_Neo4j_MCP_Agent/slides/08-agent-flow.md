@@ -3,7 +3,7 @@
 ## What Happens When You Ask a Question
 
 ```
-User: "What risk factors does Apple face?"
+User: "What requirements does the HVB_3900 battery have?"
          │
          ▼
 ┌─────────────────────────────────────────┐
@@ -15,8 +15,8 @@ User: "What risk factors does Apple face?"
          ▼
 ┌─────────────────────────────────────────┐
 │  MCP Server: Returns schema             │
-│  - Nodes: Company, RiskFactor...        │
-│  - Rels: FACES_RISK, OWNS...            │
+│  - Nodes: Component, Requirement...     │
+│  - Rels: COMPONENT_HAS_REQ, DETECTED... │
 └─────────────────────────────────────────┘
          │
          ▼
@@ -33,7 +33,7 @@ User: "What risk factors does Apple face?"
          ▼
 ┌─────────────────────────────────────────┐
 │  LLM: Synthesizes human response        │
-│  "Apple faces the following risks..."   │
+│  "The HVB_3900 has the following..."    │
 └─────────────────────────────────────────┘
 ```
 

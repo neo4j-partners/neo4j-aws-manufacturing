@@ -5,18 +5,18 @@
 The agent shows its reasoning process:
 
 ```
-Question: "Tell me about Apple Inc"
+Question: "Tell me about the HVB_3900 component"
 
-Reasoning: This question asks for company overview information.
-           The get_company_overview tool is designed for this.
-           Parameter: company_name = "APPLE INC"
+Reasoning: This question asks for component overview information.
+           The get_component_overview tool is designed for this.
+           Parameter: component_name = "HVB_3900"
 
-Action: Calling get_company_overview with company_name="APPLE INC"
+Action: Calling get_component_overview with component_name="HVB_3900"
 
-Result: Company data with risks and investors
+Result: Component data with requirements and defects
 
-Response: "Apple Inc is a technology company that faces
-          several key risk factors including..."
+Response: "HVB_3900 is the High-Voltage Battery component in the
+          Electric Powertrain domain with several key requirements..."
 ```
 
 ## Why Reasoning Matters

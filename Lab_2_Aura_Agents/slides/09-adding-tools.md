@@ -2,25 +2,26 @@
 
 ## Step 3: Add Cypher Template Tools
 
-**Tool 1: get_company_overview**
+**Tool 1: get_component_overview**
 ```cypher
-MATCH (c:Company {name: $company_name})
-OPTIONAL MATCH (c)-[:FACES_RISK]->(r:RiskFactor)
-OPTIONAL MATCH (am:AssetManager)-[:OWNS]->(c)
-RETURN c.name, collect(DISTINCT r.name)[0..10] AS risks,
-       collect(DISTINCT am.managerName)[0..10] AS owners
+MATCH (comp:Component {name: $component_name})
+OPTIONAL MATCH (comp)-[:COMPONENT_HAS_REQ]->(req:Requirement)
+OPTIONAL MATCH (td:TechnologyDomain)-[:DOMAIN_HAS_COMPONENT]->(comp)
+RETURN comp.name, collect(DISTINCT req.name)[0..10] AS requirements,
+       td.name AS technology_domain
 ```
 
-**Tool 2: find_shared_risks**
+**Tool 2: find_shared_requirements**
 ```cypher
-MATCH (c1:Company)-[:FACES_RISK]->(r)<-[:FACES_RISK]-(c2:Company)
-WHERE c1.name = $company1 AND c2.name = $company2
-RETURN collect(DISTINCT r.name) AS shared_risks
+MATCH (c1:Component {name: $component1})-[:COMPONENT_HAS_REQ]->(r:Requirement)
+MATCH (c2:Component {name: $component2})-[:COMPONENT_HAS_REQ]->(r2:Requirement)
+RETURN c1.name, size(collect(DISTINCT r)) AS reqs_1,
+       c2.name, size(collect(DISTINCT r2)) AS reqs_2
 ```
 
 ## Step 4: Add Similarity Search
 
-- Index: `chunkEmbeddings`
+- Index: `requirement_embeddings`
 - Model: `text-embedding-ada-002`
 
 ## Step 5: Add Text2Cypher

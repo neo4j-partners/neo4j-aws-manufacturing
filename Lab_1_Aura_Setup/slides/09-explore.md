@@ -8,15 +8,15 @@
 
 ### Try These Explorations
 
-**Find Asset Manager Networks:**
-- Search for "BlackRock"
-- Expand to see owned companies
-- Explore shared risk factors
+**Find Product Structure:**
+- Search for "Product"
+- Expand to see technology domains
+- Explore components within each domain
 
-**Discover Risk Patterns:**
-- Search for "cybersecurity"
-- See which companies face this risk
-- Find common risk themes
+**Discover Requirement Patterns:**
+- Search for "Requirement"
+- See which components have the most requirements
+- Find connected test cases and defects
 
 ### Apply Graph Algorithms
 - Use **Degree Centrality** to find highly connected nodes

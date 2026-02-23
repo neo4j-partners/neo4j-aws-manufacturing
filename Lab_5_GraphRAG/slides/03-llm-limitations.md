@@ -16,13 +16,13 @@ LLMs generate the most *probable* continuation, not the most *accurate*.
 
 ## Knowledge Cutoff
 
-Ask about your Q3 results or last week's board meeting - the LLM may generate a confident (and wrong) response.
+Ask about your latest test results or last week's defect report - the LLM may generate a confident (and wrong) response.
 
 ## Relationship Blindness
 
-"Which asset managers own companies facing cybersecurity risks?"
+"Which components have requirements affected by open change proposals?"
 
-This requires *reasoning over relationships* - connecting entities across documents.
+This requires *reasoning over relationships* - connecting entities across the manufacturing traceability chain.
 
 ---
 

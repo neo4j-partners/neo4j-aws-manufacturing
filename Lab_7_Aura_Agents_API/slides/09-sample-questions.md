@@ -2,28 +2,28 @@
 
 ## Try These with Your Client
 
-### Company Overview
+### Product Overview
 ```python
-client.invoke("Tell me about Apple Inc and their major investors")
-client.invoke("What is NVIDIA's business and what risks do they face?")
+client.invoke("Tell me about the R2D2 product and its technology domains")
+client.invoke("What components are in the Electric Powertrain domain?")
 ```
 
-### Comparative Analysis
+### Component Analysis
 ```python
-client.invoke("What risks do Apple and Microsoft share?")
-client.invoke("Compare the risk factors between tech companies")
+client.invoke("What requirements do HVB_3900 and PDU_1500 have?")
+client.invoke("Which component has the most requirements?")
 ```
 
 ### Semantic Search
 ```python
-client.invoke("What do the filings say about AI and machine learning?")
-client.invoke("Find mentions of supply chain challenges")
+client.invoke("What do the requirements say about thermal management and cooling?")
+client.invoke("Find requirements related to safety monitoring")
 ```
 
 ### Structured Queries
 ```python
-client.invoke("Which company has the most risk factors?")
-client.invoke("List all the products mentioned for Microsoft")
+client.invoke("What defects have been detected in testing?")
+client.invoke("What changes have been proposed that affect battery requirements?")
 ```
 
 ---

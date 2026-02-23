@@ -22,7 +22,7 @@ from neo4j_graphrag.embeddings import BedrockEmbeddings
 embedder = BedrockEmbeddings(model_id="amazon.titan-embed-text-v2:0")
 
 # Generate an embedding
-vector = embedder.embed_query("What are the company's risk factors?")
+vector = embedder.embed_query("What are the thermal management requirements?")
 # Returns: list[float] with 1024 dimensions
 ```
 

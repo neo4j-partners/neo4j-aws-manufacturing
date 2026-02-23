@@ -2,34 +2,34 @@
 
 ## Behind the Scenes
 
-When you ask: **"What risks does Apple face?"**
+When you ask: **"What requirements does the HVB_3900 have?"**
 
 ### Step 1: Schema Discovery
 ```
 Agent → get-schema
-← Learns: Company, RiskFactor, FACES_RISK
+← Learns: Component, Requirement, COMPONENT_HAS_REQ
 ```
 
 ### Step 2: Query Generation
 ```
-Agent thinks: "I need to find Apple and traverse FACES_RISK"
+Agent thinks: "I need to find HVB_3900 and traverse COMPONENT_HAS_REQ"
 Generates:
-  MATCH (c:Company)-[:FACES_RISK]->(r:RiskFactor)
-  WHERE c.name CONTAINS 'APPLE'
-  RETURN r.name
+  MATCH (comp:Component)-[:COMPONENT_HAS_REQ]->(req:Requirement)
+  WHERE comp.name CONTAINS 'HVB_3900'
+  RETURN req.name
 ```
 
 ### Step 3: Execution
 ```
 Agent → read-cypher(query)
-← Results: ["Cybersecurity", "Supply Chain", "Regulatory"]
+← Results: ["Thermal Management", "Energy Density", "Safety Monitoring"]
 ```
 
 ### Step 4: Synthesis
 ```
-"Apple Inc faces several key risk factors including
-cybersecurity threats, supply chain dependencies, and
-regulatory challenges."
+"The HVB_3900 component has several key requirements including
+thermal management specifications, energy density targets, and
+safety monitoring standards."
 ```
 
 ---

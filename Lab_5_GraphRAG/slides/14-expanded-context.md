@@ -5,7 +5,7 @@
 When you find a relevant chunk, it may be mid-sentence or mid-thought:
 
 ```
-Chunk 2: "...faces significant cybersecurity risks including..."
+Chunk 2: "...thermal management system must maintain temperatures..."
 ```
 
 ## The Solution
@@ -20,11 +20,11 @@ Concatenated, this gives the LLM complete context.
 
 ## Why This Matters
 
-Consider: "What were Apple's revenue trends?"
+Consider: "What are the cooling requirements for the battery?"
 
-- **Matched chunk**: Mentions a specific quarter
-- **Previous chunk**: Setup and context
-- **Next chunk**: Conclusions and follow-up
+- **Matched chunk**: Mentions specific thermal specifications
+- **Previous chunk**: Setup and context about the component
+- **Next chunk**: Additional specifications and compliance details
 
 The LLM gets **three times the context** for better answers.
 

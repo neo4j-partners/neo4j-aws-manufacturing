@@ -64,7 +64,7 @@ After your Aura instance is running, restore the pre-built knowledge graph:
 ### Step 1: Download the Backup File
 
 1. Download the backup file from GitHub:
-   - **Download link:** [finance_data.backup](https://github.com/neo4j-partners/hands-on-lab-neo4j-and-bedrock/raw/refs/heads/main/Lab_1_Aura_Setup/data/finance_data.backup)
+   - **Download link:** [manufacturing_data.backup](https://github.com/neo4j-partners/hands-on-lab-neo4j-and-bedrock/raw/refs/heads/main/Lab_1_Aura_Setup/data/manufacturing_data.backup)
 2. Save the file to a location you can easily find (e.g., your Downloads folder)
 
 ### Step 2: Upload to Aura
@@ -75,16 +75,17 @@ After your Aura instance is running, restore the pre-built knowledge graph:
    ![Instance menu showing Backup & restore option](images/backup_restore.png)
 
 3. Click **Upload backup** to open the upload dialog
-4. Drag the `finance_data.backup` file you downloaded into the dialog:
+4. Drag the `manufacturing_data.backup` file you downloaded into the dialog:
 
    ![Upload backup dialog with drag and drop area](images/restore_drag.png)
 
-5. Wait for the restore to complete - your instance will restart with the SEC 10-K filings knowledge graph
+5. Wait for the restore to complete - your instance will restart with the manufacturing knowledge graph
 
 The backup contains:
-- SEC 10-K filing documents from major companies (Apple, Microsoft, NVIDIA, etc.)
-- Extracted entities: Companies, Risk Factors, Products, Executives, Financial Metrics
-- Asset manager ownership data
+- Product development data for the R2D2 automotive product
+- Components across technology domains (Electric Powertrain, Chassis, Body, Infotainment)
+- Engineering requirements with detailed descriptions
+- Test sets, test cases, defects, and change proposals
 - Text chunks with vector embeddings for semantic search
 
 ## Part 3: Explore the Knowledge Graph
@@ -105,19 +106,19 @@ Click **Connect to instance** to connect to your database.
 
 ![Connect to instance button in Explore](images/Connect_instance.png)
 
-### Step 3: Search for Asset Manager Relationships
+### Step 3: Search for Product Traceability Relationships
 
-In the search bar, build a pattern to explore the relationships between asset managers, companies, and risk factors. Type `AssetManager`, then select the **OWNS** relationship, followed by **Company**, then **FACES_RISK**, and finally **RiskFactor**.
+In the search bar, build a pattern to explore the relationships between products, technology domains, and components. Type `Product`, then select the **PRODUCT_HAS_DOMAIN** relationship, followed by **TechnologyDomain**, then **DOMAIN_HAS_COMPONENT**, and finally **Component**.
 
-This creates the pattern: `AssetManager — OWNS → Company — FACES_RISK → RiskFactor`
+This creates the pattern: `Product — PRODUCT_HAS_DOMAIN → TechnologyDomain — DOMAIN_HAS_COMPONENT → Component`
 
-![Search pattern builder showing AssetManager to Company to RiskFactor path](images/asset_manager_owns.png)
+![Search pattern builder showing Product to TechnologyDomain to Component path](images/asset_manager_owns.png)
 
 ### Step 4: Visualize the Knowledge Graph
 
-After executing the search, you'll see a visual representation of the knowledge graph. The graph shows AssetManager nodes (orange) connected to Company nodes (pink) through OWNS relationships, and Company nodes connected to RiskFactor nodes (yellow) through FACES_RISK relationships. The visualization reveals how different asset managers are exposed to various risk factors through the companies they own.
+After executing the search, you'll see a visual representation of the knowledge graph. The graph shows Product nodes connected to TechnologyDomain nodes through PRODUCT_HAS_DOMAIN relationships, and TechnologyDomain nodes connected to Component nodes through DOMAIN_HAS_COMPONENT relationships. The visualization reveals the product structure — how a product is organized into technology domains containing specific components.
 
-![Knowledge graph visualization showing AssetManager, Company, and RiskFactor nodes with relationships](images/company_graph.png)
+![Knowledge graph visualization showing Product, TechnologyDomain, and Component nodes with relationships](images/company_graph.png)
 
 **Tips for Exploring:**
 
@@ -153,7 +154,7 @@ After the algorithm completes, you'll see a notification showing how many scores
 
 ### Step 8: Analyze the Results
 
-The graph now displays nodes sized according to their degree centrality scores. Asset managers (pink/salmon nodes) that own more companies appear larger, making it easy to visually identify the most significant institutional investors in your dataset.
+The graph now displays nodes sized according to their degree centrality scores. Components with more requirements or technology domains with more components appear larger, making it easy to visually identify the most significant entities in your manufacturing dataset.
 
 ![Graph visualization with nodes sized by degree centrality scores](images/degree_centality_graph.png)
 

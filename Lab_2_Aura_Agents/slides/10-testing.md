@@ -3,16 +3,16 @@
 ## Sample Questions by Tool Type
 
 ### Cypher Templates
-- "Tell me about Apple's SEC filing and major investors"
-- "What risks do Apple and Microsoft share?"
+- "Tell me about the HVB_3900 component and its requirements"
+- "Compare requirements between HVB_3900 and PDU_1500"
 
 ### Similarity Search
-- "What do the filings say about AI and machine learning?"
-- "Find content about supply chain risks"
+- "What do the requirements say about thermal management and cooling?"
+- "Find requirements related to safety monitoring"
 
 ### Text2Cypher
-- "Which company has the most risk factors?"
-- "How many products does NVIDIA mention?"
+- "Which component has the most requirements?"
+- "How many defects have high severity?"
 
 ## What to Observe
 

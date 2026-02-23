@@ -102,7 +102,7 @@ WITH c.name AS component, r.name AS requirement, r.type AS type,
      count(DISTINCT ts) AS test_sets, count(DISTINCT tc) AS test_cases,
      count(DISTINCT d) AS defects
 RETURN component, requirement, type, test_sets, test_cases, defects
-ORDER BY defects DESC, component NULLS LAST, requirement NULLS LAST
+ORDER BY defects DESC, component, requirement
 LIMIT $limit"""
 
 

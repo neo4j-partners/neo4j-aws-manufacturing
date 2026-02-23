@@ -21,8 +21,8 @@ Documents are split into smaller pieces because:
 Vectors that capture **semantic meaning**:
 
 ```
-"Apple makes iPhones"           → [0.12, -0.45, 0.78, ...]
-"The company produces phones"   → [0.11, -0.44, 0.77, ...]
+"thermal management system"       → [0.12, -0.45, 0.78, ...]
+"the cooling system for heat"     → [0.11, -0.44, 0.77, ...]
 ```
 
 Similar meanings = similar vectors = found by similarity search.

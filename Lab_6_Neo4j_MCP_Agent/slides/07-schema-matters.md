@@ -10,19 +10,19 @@ Unlike relational databases, graphs don't require predefined tables.
 
 | Component | Examples |
 |-----------|----------|
-| Node labels | `Company`, `RiskFactor`, `Product` |
-| Relationship types | `FACES_RISK`, `OWNS`, `MENTIONS` |
-| Properties | `name`, `ticker`, `description` |
+| Node labels | `Product`, `Component`, `Requirement`, `Defect` |
+| Relationship types | `COMPONENT_HAS_REQ`, `DETECTED`, `CHANGE_AFFECTS_REQ` |
+| Properties | `name`, `description`, `severity` |
 
 ## Better Queries
 
 With schema knowledge:
 
 ```cypher
--- LLM knows Company has 'name' property
--- LLM knows FACES_RISK connects Company to RiskFactor
-MATCH (c:Company {name: 'APPLE INC'})-[:FACES_RISK]->(r:RiskFactor)
-RETURN r.name
+-- LLM knows Component has 'name' property
+-- LLM knows COMPONENT_HAS_REQ connects Component to Requirement
+MATCH (comp:Component {name: 'HVB_3900'})-[:COMPONENT_HAS_REQ]->(req:Requirement)
+RETURN req.name
 ```
 
 Without schema: The LLM guesses and often fails.

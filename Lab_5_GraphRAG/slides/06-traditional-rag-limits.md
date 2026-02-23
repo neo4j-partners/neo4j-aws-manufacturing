@@ -12,9 +12,9 @@ Traditional RAG helps but introduces new challenges:
 
 | Question | Why It Struggles |
 |----------|------------------|
-| "Which asset managers own companies facing cyber risks?" | Requires connecting ownership to risk mentions |
-| "What products share risk factors?" | Requires finding shared entities |
-| "How many companies mention supply chain?" | Requires aggregation, not similarity |
+| "Which components have requirements affected by change proposals?" | Requires connecting components to changes via requirements |
+| "What defects share the same root component?" | Requires finding shared entities |
+| "How many requirements mention thermal management?" | Requires aggregation, not similarity |
 
 ## The Core Issue
 

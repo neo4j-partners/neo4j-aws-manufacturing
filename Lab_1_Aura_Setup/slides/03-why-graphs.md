@@ -13,8 +13,8 @@ Traditional databases struggle with **connected data**:
 ## Real-World Impact
 
 Questions like:
-- "Which asset managers are exposed to cybersecurity risks?"
-- "What companies share risk factors with Apple?"
+- "Which components have requirements affected by open change proposals?"
+- "What defects are linked to the high-voltage battery?"
 
 These require **traversing relationships** - exactly what graphs do best.
 

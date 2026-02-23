@@ -6,7 +6,7 @@ In Lab 1, you set up a knowledge graph. Now you'll make it **conversational**.
 
 ## What You'll Build
 
-An AI-powered agent that helps users analyze SEC 10-K filings by combining:
+An AI-powered agent that helps users explore manufacturing product data by combining:
 - **Semantic search** - Find content by meaning
 - **Graph traversal** - Follow relationships
 - **Natural language** - No Cypher required

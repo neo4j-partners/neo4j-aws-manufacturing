@@ -10,7 +10,7 @@ client = AuraAgentClient(
 )
 
 # Ask a question
-response = client.invoke("Tell me about Apple's risk factors")
+response = client.invoke("What requirements does the HVB_3900 battery have?")
 
 # Get the answer
 print(response.text)

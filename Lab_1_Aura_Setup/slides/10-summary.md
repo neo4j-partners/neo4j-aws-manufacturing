@@ -3,7 +3,7 @@
 ## What You Accomplished
 
 - Set up a **Neo4j Aura** database on AWS
-- Restored a **knowledge graph** from SEC 10-K filings
+- Restored a **manufacturing knowledge graph** from backup
 - Explored the graph using **Neo4j Explore**
 - Saved credentials for later labs
 

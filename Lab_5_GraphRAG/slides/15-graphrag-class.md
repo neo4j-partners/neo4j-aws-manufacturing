@@ -17,7 +17,7 @@ rag = GraphRAG(
 
 # Ask a question
 response = rag.search(
-    query_text="What are the main risk factors?",
+    query_text="What are the thermal management requirements?",
     retriever_config={"top_k": 5},
     return_context=True
 )

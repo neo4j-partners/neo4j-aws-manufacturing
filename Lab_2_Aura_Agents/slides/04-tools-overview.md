@@ -12,9 +12,9 @@
 
 The agent reads tool descriptions and matches them to questions:
 
-- "Tell me about Apple" → `get_company_overview` (template)
-- "What do filings say about AI?" → `search_filing_content` (similarity)
-- "How many risk factors exist?" → `query_database` (Text2Cypher)
+- "Tell me about HVB_3900" → `get_component_overview` (template)
+- "What do requirements say about cooling?" → `search_requirement_content` (similarity)
+- "How many defects have high severity?" → `query_database` (Text2Cypher)
 
 ## Tool Descriptions Matter
 

@@ -5,11 +5,11 @@
 Text2Cypher uses an LLM to convert questions into Cypher:
 
 ```
-"Which company has the most risk factors?"
+"Which component has the most requirements?"
     ↓
-MATCH (c:Company)-[:FACES_RISK]->(r:RiskFactor)
-RETURN c.name, count(r) AS riskCount
-ORDER BY riskCount DESC
+MATCH (comp:Component)-[:COMPONENT_HAS_REQ]->(req:Requirement)
+RETURN comp.name, count(req) AS reqCount
+ORDER BY reqCount DESC
 LIMIT 1
 ```
 
@@ -17,10 +17,10 @@ LIMIT 1
 
 | Question Pattern | Example |
 |------------------|---------|
-| Counts | "How many products does Apple mention?" |
-| Lists | "List all companies in the database" |
-| Comparisons | "Which company has the most executives?" |
-| Specific facts | "What is NVIDIA's ticker symbol?" |
+| Counts | "How many defects have high severity?" |
+| Lists | "List all components in the database" |
+| Comparisons | "Which technology domain has the most components?" |
+| Specific facts | "What is the status of defect DEF_001?" |
 
 ## Trade-offs
 

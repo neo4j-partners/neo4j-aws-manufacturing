@@ -15,7 +15,7 @@ The Neo4j MCP Server exposes two tools:
 
 ```
 1. Agent calls: get-schema
-2. Learns: Company, RiskFactor, FACES_RISK, OWNS...
+2. Learns: Product, Component, Requirement, COMPONENT_HAS_REQ...
 3. Now can generate accurate Cypher
 ```
 

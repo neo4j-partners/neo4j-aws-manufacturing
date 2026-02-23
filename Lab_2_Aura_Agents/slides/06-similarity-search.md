@@ -7,7 +7,7 @@ Similarity search finds content by **meaning**, not keywords.
 ## How It Works
 
 ```
-User Question: "What do filings say about artificial intelligence?"
+User Question: "What are the thermal management requirements?"
     ↓
 Question → Embedding (vector)
     ↓
@@ -22,7 +22,7 @@ Return semantically relevant passages
 |---------|---------|
 | **Embedding Provider** | OpenAI, Bedrock, etc. |
 | **Embedding Model** | text-embedding-ada-002 |
-| **Vector Index** | chunkEmbeddings |
+| **Vector Index** | requirement_embeddings |
 | **Top K** | Number of results (e.g., 5) |
 
 ## Best For

@@ -40,5 +40,5 @@ At this point you can click through to dismiss any help dialogs. In the next lab
 
 ## Next Steps
 
-Continue to [Lab 1 - Aura Setup](../Lab_1_Aura_Setup) to create your Neo4j Aura database and load the SEC filings knowledge graph.
+Continue to [Lab 1 - Aura Setup](../Lab_1_Aura_Setup) to create your Neo4j Aura database and load the manufacturing knowledge graph.
 

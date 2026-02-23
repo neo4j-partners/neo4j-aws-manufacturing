@@ -8,7 +8,7 @@ Authorization: Bearer {access_token}
 Content-Type: application/json
 
 {
-  "input": "Tell me about Apple's risk factors"
+  "input": "What requirements does the HVB_3900 battery have?"
 }
 ```
 
@@ -20,12 +20,12 @@ Content-Type: application/json
   "content": [
     {
       "type": "text",
-      "text": "Apple Inc faces several key risk factors..."
+      "text": "The HVB_3900 component has several key requirements..."
     },
     {
       "type": "tool_use",
-      "name": "get_company_overview",
-      "input": {"company_name": "APPLE INC"}
+      "name": "get_component_overview",
+      "input": {"component_name": "HVB_3900"}
     }
   ],
   "usage": {

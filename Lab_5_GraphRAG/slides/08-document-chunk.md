@@ -1,4 +1,4 @@
-# Document-Chunk Model
+# Manufacturing Traceability Model
 
 ## Graph Structure for RAG
 
@@ -7,10 +7,10 @@
 │  Chunk 1 │───────────────▶│  Chunk 2 │───────────────▶│  Chunk 3 │
 └────┬─────┘                └────┬─────┘                └────┬─────┘
      │                           │                           │
-     │ FROM_DOCUMENT             │ FROM_DOCUMENT             │ FROM_DOCUMENT
+     │ HAS_CHUNK                 │ HAS_CHUNK                 │ HAS_CHUNK
      ▼                           ▼                           ▼
 ┌────────────────────────────────────────────────────────────────────┐
-│                           Document                                  │
+│                         Requirement                                  │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -19,8 +19,8 @@
 | Relationship | Purpose |
 |--------------|---------|
 | `NEXT_CHUNK` | Retrieve sequential context |
-| `FROM_DOCUMENT` | Track provenance |
-| Entity links | Connect to extracted entities |
+| `HAS_CHUNK` | Track provenance to parent requirement |
+| `COMPONENT_HAS_REQ` | Connect to component traceability |
 
 ---
 
