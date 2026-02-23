@@ -129,30 +129,7 @@ You'll need a laptop with a web browser. Your browser will need to be able to ac
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              YOUR AGENTS                                     │
-├───────────────────┬─────────────────────────┬───────────────────────────────┤
-│   Part 1 (No-Code) │     Part 2 (GraphRAG)   │      Part 3 (Advanced)        │
-│  ┌───────────────┐ │  ┌─────────────────────┐ │  ┌─────────────────────────┐  │
-│  │ Aura Agents   │ │  │   neo4j-graphrag    │ │  │   Aura Agents API       │  │
-│  │ • Templates   │ │  │   • VectorRetriever │ │  │   • REST API Access     │  │
-│  │ • Similarity  │ │  │   • VectorCypherR.  │ │  │   • OAuth2 Auth         │  │
-│  │ • Text2Cypher │ │  │   • GraphRAG Class  │ │  │   LangGraph + MCP       │  │
-│  └───────────────┘ │  └─────────────────────┘ │  │   • Neo4j MCP Server    │  │
-│                    │                          │  └─────────────────────────┘  │
-└───────────────────┴─────────────────────────┴───────────────────────────────┘
-                                    │
-                                    ▼
-                    ┌───────────────────────────────┐
-                    │        Neo4j Aura             │
-                    │  Manufacturing Knowledge Graph │
-                    │  • Products & Components      │
-                    │  • Requirements & Test Cases  │
-                    │  • Defects & Change Proposals │
-                    │  • Vector Embeddings          │
-                    └───────────────────────────────┘
-```
+![Workshop Architecture](TransformedData/architecture.png)
 
 ## Knowledge Graph Data Model
 
