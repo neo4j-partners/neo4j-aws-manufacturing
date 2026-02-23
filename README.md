@@ -176,35 +176,9 @@ The knowledge graph captures the full **traceability chain** from product defini
 
 ### Graph Structure
 
-```
-┌─────────┐  PRODUCT_HAS_DOMAIN  ┌──────────────────┐  DOMAIN_HAS_COMPONENT  ┌─────────────┐
-│ Product │─────────────────────>│ TechnologyDomain │──────────────────────>│  Component  │
-│         │                      │                  │                       │             │
-│ R2D2    │                      │ Electric         │                       │ HVB_3900    │
-│         │                      │ Powertrain       │                       │ (Battery)   │
-└─────────┘                      └──────────────────┘                       └─────────────┘
-                                                                                  │
-                                                                   COMPONENT_HAS_REQ
-                                                                                  │
-                                                                                  v
-┌─────────┐  CHANGE_AFFECTS_REQ  ┌─────────────┐  TESTED_WITH  ┌─────────┐
-│ Change  │─────────────────────>│ Requirement │──────────────>│ TestSet │
-│         │                      │             │               │         │
-│ CP001   │                      │ Battery Cell│               │ Cell    │
-│         │                      │ and Module  │               │ Design  │
-│         │                      │ Design      │               │ Tests   │
-└─────────┘                      └─────────────┘               └─────────┘
-                                                                    │
-                                                       CONTAINS_TEST_CASE
-                                                                    │
-                                                                    v
-                                                               ┌──────────┐  DETECTED  ┌────────┐
-                                                               │ TestCase │───────────>│ Defect │
-                                                               │          │            │        │
-                                                               │ Energy   │            │ DEF001 │
-                                                               │ Density  │            │        │
-                                                               └──────────┘            └────────┘
-```
+![Manufacturing Data Model — Graph Schema](TransformedData/manufacturing-data-model.png)
+
+For detailed documentation of the data model including node properties, relationship sources, traversal patterns, and embedding targets, see [TransformedData/DATA_ARCHITECTURE.md](TransformedData/DATA_ARCHITECTURE.md).
 
 ### Node Types
 
