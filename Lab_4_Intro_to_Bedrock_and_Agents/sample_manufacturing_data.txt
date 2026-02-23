@@ -1,0 +1,39 @@
+R2D2 is a next-generation robotic vehicle product currently under development. The product
+encompasses four technology domains: Electric Powertrain, Chassis, Body, and Infotainment.
+
+Components
+
+The Electric Powertrain domain includes the HVB_3900 High-Voltage Battery, PDU_1500 Power
+Distribution Unit, INV_2300 Inverter, and EMC_1800 E-Machine. The Chassis domain covers the
+SUS_4200 Suspension and BRK_3800 Brakes systems. The Body domain includes EXT_5600 Exterior
+and INT_6700 Interior components, along with SEA_7500 Seats.
+
+Requirements
+
+The HVB_3900 High-Voltage Battery has extensive engineering requirements covering battery cell
+and module design, housing and structural integrity, high-voltage wiring and connectors,
+thermal management, energy management, electrical safety, durability and lifecycle, crash
+safety, and electromagnetic compatibility. Each requirement includes detailed specifications
+in both German and English.
+
+Testing
+
+Requirements are validated through structured test sets containing individual test cases.
+For example, the Cell Design Tests (TS_1_1) include test cases for Voltage, Capacity,
+Energy Density, and Power Density. Test cases track status (Planned, Passed, Failed,
+In Progress), required resources, duration, schedule, and responsible engineer.
+
+Defects
+
+Testing has identified several defects including DEF001 (energy density does not meet
+specifications, High severity), DEF003 (high voltage interlock system not functioning
+correctly, Critical severity), and DEF005 (battery management system communication failure,
+High severity). Defects are tracked with severity, priority, assigned engineer, and
+resolution status.
+
+Change Proposals
+
+Change proposals address issues found during development. CP001 proposes increasing energy
+density requirements to meet Chinese standards (development cost: $500,000). CP002 proposes
+enhancing water ingress protection to IP68 (development cost: $250,000). CP003 addresses
+compliance with Chinese national standards for high-voltage wiring (development cost: $300,000).

@@ -1,0 +1,13 @@
+component_id,Component,Component Description
+1,HVB_3900,High-Voltage Battery             
+2,PDU_1500,Power Distribution Unit           
+3,INV_2300,Inverter                         
+4,EMC_1800,E-Machine                        
+5,SUS_4200,Suspension                       
+6,BRK_3800,Brakes                           
+7,EXT_5600,Exterior                         
+8,INT_6700,Interior                         
+9,SEA_7500,Seats                            
+10,LIG_6200,Lights                           
+11,IVI_7400,In-Vehicle Infotainment          
+12,TEL_8200,Telematics           

@@ -1,0 +1,25 @@
+The battery cells must have a prismatic design with an aluminum housing, a nominal voltage of 3.7V, and a capacity of 60Ah. The energy density must be at least 250Wh/kg, and the power density must be at least 1000W/kg. The battery modules must consist of 24 cells connected in series each and have a shock-resistant housing with integrated cooling channels as well as voltage and temperature sensors.
+
+The battery pack housing must be made of corrosion-resistant aluminum and have the following dimensions: 2000mm x 1200mm x 300mm. The maximum weight must not exceed 700kg. The housing must be designed for operating loads up to 20g in any direction and be protected against water according to IP67. Lifting eyes and mounting points must be provided.
+
+All high-voltage cables and connectors must be specified for 1000V and 400A continuous current. The wiring must be vibration and environment-resistant according to automotive standards. Shielded cables, grounding points, and EMC measures are required.
+
+All high-voltage cables must be equipped with a heat-resistant sheath that can withstand operating temperatures up to 150 degrees Celsius.
+
+The liquid cooling system must provide a cooling capacity of 10kW with a maximum temperature difference of 5 degrees Celsius across the battery pack. The coolant lines and connections must be suitable for glycol-water mixtures at high voltage. A coolant reservoir, leakage detection, and flow sensor must be provided.
+
+The cooling system must be designed redundantly with two independent cooling circuits to maintain cooling in case of a circuit failure.
+
+The cooling system must provide a heat transfer rate of at least 0.5W/K per cell.
+
+A water-glycol mixture (60% ethylene glycol) with corrosion inhibitor according to VW TL 774-J (G13) must be used as the coolant. The freezing point must be below -35 degrees Celsius.
+
+The heat dissipation from the cells to the cooling system must be achieved through highly conductive materials such as aluminum or graphite.
+
+The temperature difference between cells within a module must not exceed 3 degrees Celsius. The temperature difference between modules must not exceed 5 degrees Celsius.
+
+The BMS must be housed in a separate enclosure with a backup power supply. It must have CAN and Ethernet interfaces as well as OTA update capability. Functions such as cell balancing, state of charge monitoring, overcurrent and overcharge protection are required. Cell monitoring and fault diagnosis must be implemented.
+
+The safety monitoring must include redundant monitoring of current, voltage, temperature, and insulation resistance, a dual-channel shutdown logic according to ASIL-D per ISO 26262, short-circuit monitoring, and leakage current monitoring.
+
+The development of safety-critical software must be according to ASIL-D per ISO 26262 and include safety analyses, FMEDAs, fault propagation analyses, as well as redundancy, diversity, and monitoring mechanisms.

@@ -1,0 +1,27 @@
+defect_id, Description , Severity , Priority , Assigned To , Status , Creation Date , Resolved Date , Resolution , Comments 
+ DEF001     , Energy density does not meet specifications , High     , High     , Battery Cell Engineer , In Progress , 2024-05-01 , - , - , - 
+ DEF002     , System fails under specified temperature/humidity conditions , High     , High     , Environmental Engineer , Resolved , 2024-04-15 , 2023-09-15 , Redesigned environmental control system , - 
+ DEF003     , High voltage interlock system not functioning correctly , Critical , High     , Electrical Engineer , New , 2024-04-20 , - , - , Potential safety risk 
+ DEF004     , Emergency stop system not functioning correctly , Critical , High     , Test Engineer , Closed , 2024-04-24 , 2023-10-01 , Replaced faulty components , Potential hazard 
+ DEF005     , OTA update process not working as intended , Medium   , Medium   , Software Engineer , In Progress , 2024-04-22 , - , - , - 
+ DEF006     , Labeling or markings do not meet specifications , Low      , Low      , Test Engineer , Reopened , 2024-04-25 , 2024-08-15 , Previous resolution ineffective , - 
+ DEF007     , Guards for ventilation openings not functioning correctly , Medium   , Medium   , Test Engineer , Deferred , 2024-04-29 , - , - , Potential debris ingress 
+ DEF008     , Non-return valves not preventing water ingress , High     , High     , Test Engineer , Resolved , 2024-05-01 , 2024-10-01 , Replaced non-return valves , Potential water damage 
+ DEF009     , Ground continuity of housing does not meet specifications , Medium   , Medium   , Electrical Engineer , New , 2024-04-19 , - , - , Potential safety or EMC issues 
+ DEF010     , Terminal 30B connector does not meet specifications , Medium   , Medium   , Electrical Engineer , Deferred , 2024-04-20 , - , - , - 
+ DEF011     , Charge/discharge efficiency does not meet specifications , High     , High     , Software Engineer , In Progress , 2024-04-18 , - , Optimizing charge/discharge algorithms , Potential performance or range impact 
+ DEF012     , Lifetime efficiency does not meet specifications , High     , High     , Software Engineer , New , 2024-04-25 , - , - , Potential performance or range degradation 
+ DEF013     , Insulation strength does not meet specifications , Critical , High     , Electrical Engineer , Resolved , 2024-04-12 , 2025-04-01 , Redesigned insulation system , Potential safety risk 
+ DEF014     , Insulation resistance does not meet specifications , High     , High     , Electrical Engineer , Closed , 2024-04-16 , 2025-04-15 , Replaced insulation materials , Potential safety or performance issues 
+ DEF015     , Markings do not comply with ECE-R100 standard , Medium   , Medium   , Quality Engineer , Reopened , 2024-04-09 , 2025-05-01 , Previous resolution ineffective , Potential regulatory or safety issues 
+ DEF016     , Markings do not withstand environmental conditions , Low      , Low      , Test Engineer , Deferred , 2024-04-13 , - , - , Potential illegible or damaged markings 
+ DEF017     , Cell temperature monitoring not accurate , High     , High     , Software Engineer , In Progress , 2024-04-29 , - , Refining temperature monitoring algorithms , Potential safety or performance issues 
+ DEF018     , Module temperature monitoring not accurate , High     , High     , Software Engineer , New , 2024-05-02 , - , - , Potential safety or performance issues 
+ DEF019     , Filtering or shielding mechanisms inadequate , Medium   , Medium   , EMC Engineer , Resolved , 2024-04-30 , 2025-07-15 , Improved shielding and filtering , Potential EMC issues or non-compliance 
+ DEF020     , Potential separation does not meet specifications , Medium   , Medium   , Electrical Engineer , Closed , 2024-04-12 , 2025-08-01 , Redesigned potential separation , Potential safety or EMC issues 
+ DEF021     , Equipotential bonding does not meet specifications , Medium   , Medium   , Electrical Engineer , In Progress , 2024-04-15 , - , Modifying equipotential bonding design , Potential safety or EMC issues 
+ DEF022     , Pressure relief mechanisms not functioning correctly , Critical , High     , Fire Safety Engineer , New , 2024-04-29 , - , - , Potential safety risk 
+ DEF023     , Discharge paths or lightning protection not functioning correctly , High     , High     , Electrical Engineer , Reopened , 2024-04-18 , 2025-09-01 , Previous resolution ineffective , Potential safety risk or damage 
+ DEF024     , Current load not distributed evenly across cells/modules , High     , High     , Software Engineer , In Progress , 2024-04-28 , - , Optimizing load distribution algorithms , Potential uneven aging or degradation 
+ DEF025     , Transport mode tests failed , Medium   , Medium   , Software Engineer , Deferred , 2024-04-12 , - , - , - 
+ DEF026     , Charge optimization tests failed , High     , High     , Software Engineer , New , 2024-04-16 , - , - , - 

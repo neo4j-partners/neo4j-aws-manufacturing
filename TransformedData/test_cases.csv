@@ -1,0 +1,244 @@
+Test Case ID,Test Case,Test Status,Resources,Test Duration (hours),Start Date,End Date,Responsibility,I-Stage
+TC_1_1_1,Voltage,Planned,"Test lab, measuring instruments",48,06/15/2023,06/17/2023,Battery Cell Engineer,I-300
+TC_1_1_2,Capacity,Passed,"Test lab, measuring instruments",72,1/6/23,3/6/23,Battery Cell Engineer,I-400
+TC_1_1_3,Energy Density,Failed,"Test lab, measuring instruments",48,4/6/23,5/6/23,Battery Cell Engineer,I-400
+TC_1_1_4,Power Density,In Progress,"Test lab, measuring instruments, load simulator",96,6/6/23,,Battery Cell Engineer,I-300
+TC_1_2_1,Cooling Channel Integration,Passed,"Test lab, thermal camera",24,10/6/23,10/6/23,Battery Module Engineer,I-400
+TC_1_2_2,Sensor Integration,Planned,"Test lab, measuring instruments",48,06/20/2023,06/22/2023,Battery Module Engineer,I-300
+TC_2_1_1,Corrosion Resistance,Passed,Corrosion test facility,336,1/5/23,05/14/2023,Material Engineer,I-400
+TC_2_1_2,Dimensional Verification,Passed,3D measuring machine,24,05/15/2023,05/15/2023,Quality Engineer,I-400
+TC_2_1_3,Weight Measurement,Passed,Precision scale,24,05/16/2023,05/16/2023,Quality Engineer,I-400
+TC_2_2_1,Shock/Vibration,In Progress,Vibration test rig,120,05/17/2023,,Test Engineer,I-300
+TC_2_3_1,IP67 Ingress Protection,Planned,Water ingress test rig,72,1/6/23,4/6/23,Test Engineer,I-300
+TC_2_4_1,Lifting Eye Strength,Planned,Tensile test rig,48,5/6/23,7/6/23,Test Engineer,I-300
+TC_2_5_1,Mounting Point Strength,Planned,Tensile test rig,48,8/6/23,10/6/23,Test Engineer,I-300
+TC_3_1_1,High Voltage Withstand,Passed,High voltage test rig,48,1/7/23,2/7/23,Electrical Engineer,I-400
+TC_3_2_1,Continuous Current,Passed,High current load test rig,72,3/7/23,5/7/23,Electrical Engineer,I-400
+TC_3_3_1,Shock/Vibration,Passed,Vibration test rig,120,6/7/23,10/7/23,Test Engineer,I-400
+TC_3_4_1,Temperature/Humidity,Failed,Climate chamber,168,11/7/23,07/17/2023,Environmental Engineer,I-400
+TC_3_5_1,Shielding Effectiveness,Passed,EMC anechoic chamber,72,07/18/2023,07/20/2023,EMC Engineer,I-400
+TC_3_6_1,Ground Continuity,Passed,Resistance meter,24,07/21/2023,07/21/2023,Electrical Engineer,I-400
+TC_3_7_1,EMC Compliance,Planned,EMC anechoic chamber,120,07/25/2023,07/29/2023,EMC Engineer,I-300
+TC_4_1_1,High Temperature Exposure,Passed,Heat chamber test rig,168,1/8/23,7/8/23,Material Engineer,I-400
+TC_4_1_2,Thermal Aging,Passed,Heat chamber test rig,720,8/8/23,6/9/23,Material Engineer,I-400
+TC_5_1_1,Cooling Capacity,Planned,"Climate chamber, load simulator",120,1/8/23,6/8/23,Thermal Engineer,I-300
+TC_5_1_2,Temperature Differential,Planned,"Climate chamber, thermal camera",72,7/8/23,10/8/23,Thermal Engineer,I-300
+TC_5_2_1,Coolant Compatibility,Planned,Chemical lab,168,08/14/2023,08/21/2023,Chemical Engineer,I-300
+TC_5_3_1,Reservoir,Planned,Test lab,48,08/21/2023,08/23/2023,Test Engineer,I-300
+TC_5_3_2,Leakage Detection,Planned,Test lab,72,08/24/2023,08/27/2023,Test Engineer,I-300
+TC_5_3_3,Flow Sensor,Passed,"Test lab, flow test rig",96,08/28/2023,2/9/23,Test Engineer,I-300
+TC_6_1_1,Cooling Circuit Redundancy,Planned,"Climate chamber, load simulator, flow test rig",96,1/7/23,5/7/23,Thermal Engineer,I-300
+TC_6_1_2,Pump Redundancy,Passed,"Climate chamber, load simulator, flow test rig",72,6/7/23,9/7/23,Thermal Engineer,I-300
+TC_7_1_1,Heat Transfer Rate,Planned,"Climate chamber, load simulator, thermal sensors",120,10/7/23,07/15/2023,Thermal Engineer,I-300
+TC_8_1_1,Coolant Composition,Passed,Chemical lab,72,07/16/2023,07/19/2023,Chemical Engineer,I-300
+TC_8_1_2,Freezing Point,Planned,Climate chamber,48,07/20/2023,07/22/2023,Chemical Engineer,I-300
+TC_9_1_1,Thermal Conductivity,Planned,Thermal conductivity test rig,72,07/23/2023,07/26/2023,Material Engineer,I-300
+TC_10_1_1,Cell Temperature Differential,Passed,"Climate chamber, thermal sensors",96,07/27/2023,07/31/2023,Thermal Engineer,I-300
+TC_10_1_2,Module Temperature Differential,Planned,"Climate chamber, thermal sensors",72,1/8/23,4/8/23,Thermal Engineer,I-300
+TC_11_1_1,Sensor Accuracy,Passed,"Climate chamber, precision thermometer",48,5/8/23,7/8/23,Test Engineer,I-300
+TC_11_1_2,Sensor Integration,Planned,"Test lab, measuring instruments",24,8/8/23,8/8/23,Test Engineer,I-300
+TC_12_1_1,Enclosure Tests,Planned,Environmental test chamber,72,9/8/23,12/8/23,Test Engineer,I-300
+TC_12_1_2,Interface Tests,Planned,"Test lab, network analyzers",48,08/13/2023,08/15/2023,Test Engineer,I-300
+TC_12_1_3,Backup Power Supply Tests,Planned,"Test lab, power supplies",24,08/16/2023,08/16/2023,Test Engineer,I-300
+TC_12_1_4,OTA Update Tests,Planned,"Test lab, network infrastructure",48,08/17/2023,08/19/2023,Test Engineer,I-300
+TC_12_2_1,Real-Time Performance Tests,Planned,"Test lab, load generators",72,09/17/2023,09/20/2023,Software Engineer,I-300
+TC_12_2_2,Version Compatibility Tests,Planned,"Test lab, BMS hardware",48,09/21/2023,09/23/2023,Software Engineer,I-300
+TC_12_3_1,Voltage Sampling Tests,Planned,"Test lab, BMS hardware, load simulator",72,09/24/2023,09/27/2023,Software Engineer,I-300
+TC_12_3_2,Temperature Measurement Tests,Passed,"Climate chamber, BMS hardware",48,09/28/2023,09/30/2023,Software Engineer,I-300
+TC_12_3_3,Current Measurement Tests,Passed,"Test lab, BMS hardware, load simulator",72,1/10/23,4/10/23,Software Engineer,I-300
+TC_12_3_4,Cell Balancing Algorithm Tests,Passed,"Test lab, BMS hardware, load simulator",96,5/10/23,9/10/23,Software Engineer,I-300
+TC_12_4_1,SOC Calculation Tests,Passed,"Test lab, BMS hardware, load simulator",96,10/10/23,10/14/2023,Software Engineer,I-300
+TC_12_4_2,Range Calculation Tests,Passed,"Test lab, BMS hardware, load simulator, driving data",120,10/15/2023,10/20/2023,Software Engineer,I-300
+TC_12_5_1,Predictive Thermal Management Tests,Passed,"Test lab, BMS hardware, thermal models",96,10/21/2023,10/25/2023,Software Engineer,I-300
+TC_12_5_2,Cooling Circuit Control Tests,Passed,"Test lab, BMS hardware, cooling system",72,10/26/2023,10/29/2023,Software Engineer,I-300
+TC_12_5_3,Preconditioning Tests,Planned,"Test lab, BMS hardware, cooling system",48,10/30/2023,1/11/23,Software Engineer,I-300
+TC_12_6_1,Cycle Monitoring Tests,Planned,"Test lab, BMS hardware, load simulator",96,2/11/23,6/11/23,Software Engineer,I-300
+TC_12_6_2,Aging Modeling Tests,Planned,"Test lab, BMS hardware, load simulator",120,7/11/23,12/11/23,Software Engineer,I-300
+TC_12_6_3,Capacity Monitoring Tests,Planned,"Test lab, BMS hardware, load simulator",72,11/13/2023,11/16/2023,Software Engineer,I-300
+TC_12_6_4,Remaining Life Prediction Tests,Planned,"Test lab, BMS hardware, load simulator",96,11/17/2023,11/21/2023,Software Engineer,I-300
+TC_12_7_1,Sensor Monitoring Tests,Planned,"Test lab, BMS hardware, faulty sensors",72,11/22/2023,11/25/2023,Software Engineer,I-300
+TC_12_7_2,Actuator Monitoring Tests,Planned,"Test lab, BMS hardware, faulty actuators",72,11/26/2023,11/29/2023,Software Engineer,I-300
+TC_12_7_3,Fault Logging Tests,Planned,"Test lab, BMS hardware, diagnostic tools",48,11/30/2023,2/12/23,Software Engineer,I-300
+TC_12_7_4,Limp-Home Strategy Tests,Planned,"Test lab, BMS hardware, load simulator",72,3/12/23,6/12/23,Software Engineer,I-300
+TC_12_8_1,Overcurrent Monitoring Tests,Planned,"Test lab, BMS hardware, load simulator",72,7/12/23,10/12/23,Software Engineer,I-300
+TC_12_8_2,Overvoltage Monitoring Tests,Planned,"Test lab, BMS hardware, power supplies",48,11/12/23,12/13/2023,Software Engineer,I-300
+TC_12_8_3,Overtemperature Monitoring Tests,Planned,"Climate chamber, BMS hardware",72,12/14/2023,12/17/2023,Software Engineer,I-300
+TC_12_8_4,Short-Circuit Monitoring Tests,Planned,"Test lab, BMS hardware, load simulator",72,12/18/2023,12/21/2023,Software Engineer,I-300
+TC_12_8_5,Redundant Shutdown Tests,Planned,"Test lab, BMS hardware, load simulator",96,12/22/2023,12/27/2023,Software Engineer,I-300
+TC_12_8_6,Insulation Monitoring Tests,Planned,"Test lab, BMS hardware, insulation tester",72,12/28/2023,12/31/2023,Software Engineer,I-300
+TC_12_8_7,Leakage Current Monitoring Tests,Planned,"Test lab, BMS hardware, leakage current tester",72,1/1/24,4/1/24,Software Engineer,I-300
+TC_12_9_1,Encryption Tests,Planned,"Test lab, BMS hardware, cryptography tools",72,5/1/24,8/1/24,Software Engineer,I-300
+TC_12_9_2,Secure Boot Tests,Planned,"Test lab, BMS hardware, cryptography tools",48,9/1/24,11/1/24,Software Engineer,I-300
+TC_12_9_3,Code Signing Tests,Planned,"Test lab, BMS hardware, cryptography tools",48,12/1/24,01/14/2024,Software Engineer,I-300
+TC_12_9_4,OTA Update Security Tests,Planned,"Test lab, BMS hardware, network infrastructure",72,01/15/2024,01/18/2024,Software Engineer,I-300
+TC_12_10_1,OBD-II Interface Tests,Planned,"Test lab, BMS hardware, diagnostic tools",48,01/19/2024,01/21/2024,Software Engineer,I-300
+TC_12_10_2,UDS Interface Tests,Planned,"Test lab, BMS hardware, diagnostic tools",48,01/22/2024,01/24/2024,Software Engineer,I-300
+TC_12_10_3,Proprietary Interface Tests,Planned,"Test lab, BMS hardware, diagnostic tools",48,01/25/2024,01/27/2024,Software Engineer,I-300
+TC_12_11_1,CAN Bus Integration Tests,Planned,"Test lab, BMS hardware, vehicle network",72,01/28/2024,01/31/2024,Software Engineer,I-300
+TC_12_11_2,Ethernet Integration Tests,Planned,"Test lab, BMS hardware, vehicle network",48,1/2/24,3/2/24,Software Engineer,I-300
+TC_12_11_3,Energy Management Integration Tests,Planned,"Test lab, BMS hardware, vehicle network",72,4/2/24,7/2/24,Software Engineer,I-300
+TC_12_12_1,ASIL-D Compliance Tests,Planned,"Test lab, BMS hardware, safety analysis tools",96,8/2/24,02/13/2024,Software Engineer,I-300
+TC_12_12_2,Safety Analysis Tests,Planned,"Test lab, BMS hardware, safety analysis tools",72,02/14/2024,02/17/2024,Software Engineer,I-300
+TC_12_12_3,Fault Propagation Tests,Planned,"Test lab, BMS hardware, fault injection tools",96,02/18/2024,02/23/2024,Software Engineer,I-300
+TC_12_12_4,Redundancy Tests,Planned,"Test lab, BMS hardware, fault injection tools",72,02/24/2024,02/27/2024,Software Engineer,I-300
+TC_12_12_5,Diversity Tests,Planned,"Test lab, BMS hardware, fault injection tools",72,02/28/2024,2/3/24,Software Engineer,I-300
+TC_12_12_6,Monitoring Mechanism Tests,Planned,"Test lab, BMS hardware, fault injection tools",72,3/3/24,6/3/24,Software Engineer,I-300
+TC_12_13_1,AC Charging Control Tests,Planned,"Test lab, BMS hardware, AC charger",96,7/3/24,11/3/24,Software Engineer,I-300
+TC_12_13_2,DC Charging Control Tests,Planned,"Test lab, BMS hardware, DC charger",96,12/3/24,03/16/2024,Software Engineer,I-300
+TC_12_13_3,Charger Communication Tests,Planned,"Test lab, BMS hardware, chargers, network",72,03/17/2024,03/20/2024,Software Engineer,I-300
+TC_12_13_4,Charge Current Regulation Tests,Planned,"Test lab, BMS hardware, chargers, load simulator",96,03/21/2024,03/25/2024,Software Engineer,I-300
+TC_12_13_5,Cell Balancing Tests,Planned,"Test lab, BMS hardware, chargers, load simulator",96,03/26/2024,03/30/2024,Software Engineer,I-300
+TC_12_13_6,Charge Interruption Tests,Planned,"Test lab, BMS hardware, chargers, fault injection",72,03/31/2024,3/4/24,Software Engineer,I-300
+TC_12_13_7,Charge Statistics Tests,Planned,"Test lab, BMS hardware, chargers, data logging",48,4/4/24,6/4/24,Software Engineer,I-300
+TC_12_13_8,Charge History Tests,Planned,"Test lab, BMS hardware, chargers, data logging",48,7/4/24,9/4/24,Software Engineer,I-300
+TC_12_14_1,IEC 61851 Compliance Tests,Planned,"Test lab, BMS hardware, AC charger",72,10/4/24,04/13/2024,Software Engineer,I-300
+TC_12_14_2,Single-Phase Charging Tests,Planned,"Test lab, BMS hardware, AC charger",48,04/14/2024,04/16/2024,Software Engineer,I-300
+TC_12_14_3,Three-Phase Charging Tests,Planned,"Test lab, BMS hardware, AC charger",48,04/17/2024,04/19/2024,Software Engineer,I-300
+TC_12_14_4,ISO 15118 Charging Control Tests,Planned,"Test lab, BMS hardware, AC charger",72,04/20/2024,04/23/2024,Software Engineer,I-300
+TC_12_14_5,Plug & Charge Tests,Planned,"Test lab, BMS hardware, AC charger",48,04/24/2024,04/26/2024,Software Engineer,I-300
+TC_12_15_1,CHAdeMO Compliance Tests,Planned,"Test lab, BMS hardware, DC charger",72,04/27/2024,04/30/2024,Software Engineer,I-300
+TC_12_15_2,CCS Compliance Tests,Planned,"Test lab, BMS hardware, DC charger",72,1/5/24,4/5/24,Software Engineer,I-300
+TC_12_15_3,DIN 70121 Charging Control Tests,Planned,"Test lab, BMS hardware, DC charger",48,5/5/24,7/5/24,Software Engineer,I-300
+TC_12_15_4,ISO 15118 Charging Control Tests,Planned,"Test lab, BMS hardware, DC charger",72,8/5/24,11/5/24,Software Engineer,I-300
+TC_12_15_5,High Power Charging Tests,Passed,"Test lab, BMS hardware, high power DC charger",96,12/5/24,05/17/2024,Software Engineer,I-300
+TC_12_15_6,Plug Voltage Monitoring Tests,Passed,"Test lab, BMS hardware, DC charger",48,05/18/2024,05/20/2024,Software Engineer,I-300
+TC_12_15_7,Plug Current Monitoring Tests,Passed,"Test lab, BMS hardware, DC charger",48,05/21/2024,05/23/2024,Software Engineer,I-300
+TC_12_16_1,Cooling Capacity Adjustment Tests,Passed,"Climate chamber, BMS hardware, charger, load simulator",72,05/24/2024,05/27/2024,Software Engineer,I-300
+TC_12_16_2,Preconditioning Tests,Passed,"Climate chamber, BMS hardware, charger, cooling system",72,05/28/2024,05/31/2024,Software Engineer,I-300
+TC_12_16_3,Overheating Protection Tests,Passed,"Climate chamber, BMS hardware, charger, load simulator",72,1/6/24,4/6/24,Software Engineer,I-300
+TC_12_17_1,Charge Data Logging Tests,Passed,"Test lab, BMS hardware, chargers, data logging",72,5/6/24,8/6/24,Software Engineer,I-300
+TC_12_17_2,Charge Data Analysis Tests,Passed,"Test lab, BMS hardware, chargers, data analysis tools",72,9/6/24,12/6/24,Software Engineer,I-300
+TC_12_17_3,Long-Term Storage Tests,Passed,"Test lab, BMS hardware, chargers, data storage",72,06/13/2024,06/16/2024,Software Engineer,I-300
+TC_12_18_1,Charging Time Minimization Tests,Passed,"Test lab, BMS hardware, chargers, load simulator",96,06/17/2024,06/22/2024,Software Engineer,I-300
+TC_12_18_2,Cell Aging Consideration Tests,Passed,"Test lab, BMS hardware, chargers, load simulator",96,06/23/2024,06/28/2024,Software Engineer,I-300
+TC_12_18_3,Lifetime Consideration Tests,Passed,"Test lab, BMS hardware, chargers, load simulator",96,06/29/2024,4/7/24,Software Engineer,I-300
+TC_12_18_4,Usage Profile Forecasting Tests,Passed,"Test lab, BMS hardware, chargers, driving data",96,5/7/24,10/7/24,Software Engineer,I-300
+TC_12_18_5,Charging Behavior Adjustment Tests,Failed,"Test lab, BMS hardware, chargers, driving data",96,11/7/24,07/16/2024,Software Engineer,I-300
+TC_13_1_1,High Voltage Interlock Tests,Failed,High voltage test rig,72,08/20/2023,08/23/2023,Electrical Engineer,I-300
+TC_13_1_2,Emergency Stop Tests,Failed,"Test lab, safety relay",24,08/24/2023,08/24/2023,Test Engineer,I-300
+TC_13_1_3,Crash Sensor Tests,Planned,Shock test rig,48,08/25/2023,08/27/2023,Test Engineer,I-300
+TC_13_1_4,Gas Warning System Tests,Planned,Gas detection equipment,24,08/28/2023,08/28/2023,Test Engineer,I-300
+TC_13_1_5,Extinguishing System Tests,Planned,Fire suppression test rig,48,08/29/2023,08/31/2023,Test Engineer,I-300
+TC_14_1_1,Mounting Point Tests,Planned,Tensile test rig,48,1/9/23,3/9/23,Test Engineer,I-400
+TC_14_1_2,Vibration Tests,Planned,Vibration test rig,72,4/9/23,7/9/23,Test Engineer,I-400
+TC_14_1_3,Handling Tests,Planned,"Forklift, crane",24,8/9/23,8/9/23,Test Engineer,I-400
+TC_15_1_1,Diagnostic Connector Tests,Planned,"Test lab, diagnostic tools",24,07/17/2024,07/18/2024,Test Engineer,I-300
+TC_15_1_2,Modular Design Tests,Planned,"Test lab, repair tools",48,07/19/2024,07/21/2024,Test Engineer,I-300
+TC_15_1_3,OTA Update Tests,Failed,"Test lab, network infrastructure",48,07/22/2024,07/24/2024,Software Engineer,I-300
+TC_15_1_4,Labeling Tests,Failed,Test lab,24,07/25/2024,07/25/2024,Test Engineer,I-300
+TC_16_1_1,Radiated Emissions Tests,Planned,EMC anechoic chamber,72,07/26/2024,07/29/2024,EMC Engineer,I-300
+TC_16_1_2,Conducted Emissions Tests,Planned,EMC anechoic chamber,72,07/30/2024,2/8/24,EMC Engineer,I-300
+TC_16_1_3,Radiated Immunity Tests,Planned,EMC anechoic chamber,72,3/8/24,6/8/24,EMC Engineer,I-300
+TC_16_1_4,Conducted Immunity Tests,Planned,EMC anechoic chamber,72,7/8/24,10/8/24,EMC Engineer,I-300
+TC_16_1_5,Shielding Effectiveness Tests,Planned,EMC anechoic chamber,48,11/8/24,08/13/2024,EMC Engineer,I-300
+TC_17_1_1,CAN Bus Interface Tests,Planned,"Test lab, network analyzers",48,08/14/2024,08/16/2024,Software Engineer,I-400
+TC_17_1_2,Ethernet Interface Tests,Planned,"Test lab, network analyzers",48,08/17/2024,08/19/2024,Software Engineer,I-400
+TC_17_1_3,LIN Interface Tests,Planned,"Test lab, network analyzers",24,08/20/2024,08/20/2024,Software Engineer,I-400
+TC_17_2_1,Threaded Hole Tests,Planned,"Test lab, measuring instruments",24,08/21/2024,08/21/2024,Test Engineer,I-400
+TC_17_2_2,Vibration Damper Tests,Planned,Vibration test rig,72,08/22/2024,08/25/2024,Test Engineer,I-400
+TC_17_3_1,Ventilation Opening Tests,Planned,Airflow test rig,48,08/26/2024,08/28/2024,Test Engineer,I-400
+TC_17_3_2,Guard Tests,Failed,"Test lab, debris injection",24,08/29/2024,08/29/2024,Test Engineer,I-400
+TC_17_3_3,Non-Return Valve Tests,Failed,Water ingress test rig,48,08/30/2024,1/9/24,Test Engineer,I-400
+TC_17_4_1,High Voltage Connector Tests,Planned,High voltage test rig,72,2/9/24,5/9/24,Electrical Engineer,I-400
+TC_17_4_2,Ground Connection Tests,Planned,Resistance meter,24,6/9/24,6/9/24,Electrical Engineer,I-400
+TC_17_4_3,Communication Connector Tests,Planned,"Test lab, network analyzers",48,7/9/24,9/9/24,Test Engineer,I-400
+TC_17_4_4,Vibration Tests,Planned,Vibration test rig,72,10/9/24,09/13/2024,Test Engineer,I-400
+TC_17_4_5,Environmental Tests,Passed,Environmental test chamber,96,09/14/2024,09/19/2024,Test Engineer,I-400
+TC_17_5_1,Hose Fitting Tests,Passed,Pressure test rig,48,09/20/2024,09/22/2024,Test Engineer,I-400
+TC_17_5_2,Coolant Pressure Tests,Passed,Pressure test rig,48,09/23/2024,09/25/2024,Test Engineer,I-400
+TC_17_6_1,Coolant Composition Tests,Passed,Chemical lab,48,09/26/2024,09/28/2024,Chemical Engineer,I-400
+TC_17_6_2,Freezing Point Tests,Passed,Climate chamber,48,09/29/2024,1/10/24,Chemical Engineer,I-400
+TC_17_7_1,Low-Temperature Circuit Integration Tests,Passed,"Test lab, vehicle cooling system",72,2/10/24,5/10/24,Thermal Engineer,I-400
+TC_17_8_1,Connector Tests,Passed,"Test lab, measuring instruments",24,6/10/24,6/10/24,Electrical Engineer,I-400
+TC_17_8_2,Voltage Range Tests,Passed,"Test lab, power supplies",48,7/10/24,9/10/24,Electrical Engineer,I-400
+TC_17_8_3,Current Consumption Tests,Passed,"Test lab, power supplies, load simulator",48,10/10/24,12/10/24,Electrical Engineer,I-400
+TC_17_9_1,High Voltage Connector Tests,Passed,High voltage test rig,72,10/13/2024,10/16/2024,Electrical Engineer,I-400
+TC_17_9_2,Polarity Tests,Planned,"Test lab, measuring instruments",24,10/17/2024,10/17/2024,Electrical Engineer,I-400
+TC_17_10_1,Threaded Hole Tests,Planned,"Test lab, measuring instruments",24,10/18/2024,10/18/2024,Electrical Engineer,I-400
+TC_17_10_2,Ground Continuity Tests,Failed,Resistance meter,24,10/19/2024,10/19/2024,Electrical Engineer,I-400
+TC_17_11_1,Connector Tests,Failed,"Test lab, measuring instruments",24,10/20/2024,10/20/2024,Electrical Engineer,I-400
+TC_17_11_2,Polarity Tests,Planned,"Test lab, measuring instruments",24,10/21/2024,10/21/2024,Electrical Engineer,I-400
+TC_17_12_1,Connector Tests,Planned,"Test lab, measuring instruments",24,10/22/2024,10/22/2024,Electrical Engineer,I-400
+TC_17_12_2,Emergency Stop Function Tests,Planned,"Test lab, safety relay",48,10/23/2024,10/25/2024,Test Engineer,I-400
+TC_17_13_1,Connector Tests,Planned,"Test lab, measuring instruments",24,10/26/2024,10/26/2024,Electrical Engineer,I-400
+TC_17_13_2,Crash Signal Function Tests,Planned,Shock test rig,48,10/27/2024,10/29/2024,Test Engineer,I-400
+TC_18_1_1,Driving Mode Tests,Planned,"Test lab, BMS hardware, load simulator",72,10/30/2024,2/11/24,Software Engineer,I-300
+TC_18_1_2,Charging Mode Tests,Planned,"Test lab, BMS hardware, charger",72,3/11/24,6/11/24,Software Engineer,I-300
+TC_18_1_3,Parking Mode Tests,Planned,"Test lab, BMS hardware",48,7/11/24,9/11/24,Software Engineer,I-300
+TC_18_1_4,Transport Mode Tests,Failed,"Test lab, BMS hardware",48,10/11/24,12/11/24,Software Engineer,I-300
+TC_18_2_1,Charge/Discharge Efficiency Tests,Failed,"Test lab, BMS hardware, load simulator, charger",96,11/13/2024,11/18/2024,Software Engineer,I-300
+TC_18_2_2,Lifetime Efficiency Tests,Failed,"Test lab, BMS hardware, load simulator, charger",120,11/19/2024,11/25/2024,Software Engineer,I-300
+TC_18_3_1,CAN Bus Control Tests,Planned,"Test lab, BMS hardware, vehicle network",72,11/26/2024,11/29/2024,Software Engineer,I-300
+TC_18_3_2,Response Time Tests,Planned,"Test lab, BMS hardware, vehicle network",48,11/30/2024,2/12/24,Software Engineer,I-300
+TC_18_4_1,High Current Tests,Planned,"Test lab, BMS hardware, load simulator",72,3/12/24,6/12/24,Software Engineer,I-300
+TC_18_4_2,Temperature Range Tests,Planned,"Climate chamber, BMS hardware, load simulator",96,7/12/24,12/12/24,Software Engineer,I-300
+TC_18_5_1,Low Capacity Tests,Planned,"Test lab, BMS hardware, load simulator",72,12/13/2024,12/16/2024,Software Engineer,I-300
+TC_18_5_2,Temperature Range Tests,Planned,"Climate chamber, BMS hardware, load simulator",96,12/17/2024,12/22/2024,Software Engineer,I-300
+TC_18_5_3,Jump Start Tests,Planned,"Test lab, BMS hardware, auxiliary battery",48,12/23/2024,12/25/2024,Software Engineer,I-300
+TC_18_6_1,Voltage Ripple Measurement Tests,Planned,"Test lab, BMS hardware, load simulator",72,12/26/2024,12/29/2024,Software Engineer,I-300
+TC_18_7_1,CAN Bus Interface Tests,Planned,"Test lab, BMS hardware, vehicle network",72,12/30/2024,2/1/25,Software Engineer,I-300
+TC_18_7_2,Ethernet Interface Tests,Planned,"Test lab, BMS hardware, vehicle network",48,3/1/25,5/1/25,Software Engineer,I-300
+TC_18_7_3,LIN Interface Tests,Planned,"Test lab, BMS hardware, vehicle network",24,6/1/25,6/1/25,Software Engineer,I-300
+TC_18_7_4,OBD-II Interface Tests,Planned,"Test lab, BMS hardware, diagnostic tools",48,7/1/25,9/1/25,Software Engineer,I-300
+TC_18_7_5,JTAG Interface Tests,Passed,"Test lab, BMS hardware, programming tools",24,10/1/25,10/1/25,Software Engineer,I-300
+TC_18_8_1,Overcurrent Shutdown Tests,Passed,"Test lab, BMS hardware, load simulator",72,11/1/25,01/14/2025,Software Engineer,I-300
+TC_18_8_2,Overvoltage Shutdown Tests,Passed,"Test lab, BMS hardware, power supplies",48,01/15/2025,01/17/2025,Software Engineer,I-300
+TC_18_8_3,Overtemperature Shutdown Tests,Passed,"Climate chamber, BMS hardware",72,01/18/2025,01/21/2025,Software Engineer,I-300
+TC_18_8_4,Short-Circuit Shutdown Tests,Passed,"Test lab, BMS hardware, load simulator",72,01/22/2025,01/25/2025,Software Engineer,I-300
+TC_18_8_5,Redundant Shutdown Tests,Passed,"Test lab, BMS hardware, fault injection tools",96,01/26/2025,01/31/2025,Software Engineer,I-300
+TC_18_8_6,Cell Voltage Monitoring Tests,Passed,"Test lab, BMS hardware, load simulator",72,1/2/25,4/2/25,Software Engineer,I-300
+TC_18_8_7,Temperature Monitoring Tests,Passed,"Climate chamber, BMS hardware",72,5/2/25,8/2/25,Software Engineer,I-300
+TC_18_8_8,Current Monitoring Tests,Passed,"Test lab, BMS hardware, load simulator",72,9/2/25,12/2/25,Software Engineer,I-300
+TC_18_8_9,Cell Imbalance Monitoring Tests,Passed,"Test lab, BMS hardware, load simulator",96,02/13/2025,02/18/2025,Software Engineer,I-300
+TC_18_8_10,Cell Imbalance Shutdown Tests,Passed,"Test lab, BMS hardware, load simulator",72,02/19/2025,02/22/2025,Software Engineer,I-300
+TC_18_9_1,Interlock Integration Tests,Planned,"Test lab, BMS hardware, vehicle interlock system",72,02/23/2025,02/26/2025,Software Engineer,I-300
+TC_18_9_2,Interlock Shutdown Tests,Planned,"Test lab, BMS hardware, vehicle interlock system",72,02/27/2025,1/3/25,Software Engineer,I-300
+TC_18_10_1,Discharge Time Tests,Planned,"Test lab, BMS hardware, load simulator",72,2/3/25,5/3/25,Software Engineer,I-300
+TC_18_10_2,Discharge Monitoring Tests,Planned,"Test lab, BMS hardware, load simulator",48,6/3/25,8/3/25,Software Engineer,I-300
+TC_18_11_1,Insulation Strength Tests,Failed,High voltage test rig,72,9/3/25,12/3/25,Electrical Engineer,I-300
+TC_18_11_2,Insulation Resistance Tests,Failed,Insulation tester,72,03/13/2025,03/16/2025,Electrical Engineer,I-300
+TC_18_11_3,Isolation Monitoring Tests,Planned,"Test lab, BMS hardware, insulation tester",72,03/17/2025,03/20/2025,Software Engineer,I-300
+TC_18_11_4,Isolation Shutdown Tests,Planned,"Test lab, BMS hardware, insulation tester",72,03/21/2025,03/24/2025,Software Engineer,I-300
+TC_18_11_5,Reinforced Isolation Tests,Planned,"Test lab, measuring instruments",48,03/25/2025,03/27/2025,Electrical Engineer,I-300
+TC_18_12_1,IPXXB Protection Tests,Planned,"Test lab, ingress protection tester",72,03/28/2025,03/31/2025,Test Engineer,I-300
+TC_18_12_2,Forced Opening Tests,Planned,"Test lab, mechanical test rig",48,1/4/25,3/4/25,Test Engineer,I-300
+TC_18_12_3,Cover and Insulation Tests,Planned,"Test lab, measuring instruments",48,4/4/25,6/4/25,Electrical Engineer,I-300
+TC_18_13_1,ECE-R100 Compliance Tests,Failed,"Test lab, inspection tools",48,7/4/25,9/4/25,Quality Engineer,I-300
+TC_18_13_2,Environmental Resistance Tests,Failed,Environmental test chamber,72,10/4/25,04/13/2025,Test Engineer,I-300
+TC_18_13_3,Lifetime Tests,Planned,Accelerated aging chamber,120,04/14/2025,04/19/2025,Test Engineer,I-300
+TC_18_14_1,Full Functionality Tests,Planned,"Climate chamber, BMS hardware, load simulator",96,04/20/2025,04/25/2025,Software Engineer,I-300
+TC_18_14_2,Limited Functionality Tests,Planned,"Climate chamber, BMS hardware, load simulator",96,04/26/2025,1/5/25,Software Engineer,I-300
+TC_18_14_3,Heating Mode Tests,Planned,"Climate chamber, BMS hardware, heating system",72,2/5/25,5/5/25,Software Engineer,I-300
+TC_18_14_4,Warm-up Time Tests,Planned,"Climate chamber, BMS hardware, heating system",72,6/5/25,9/5/25,Software Engineer,I-300
+TC_18_15_1,Visual Warning Tests,Planned,"Test lab, BMS hardware, warning system",48,10/5/25,12/5/25,Software Engineer,I-300
+TC_18_15_2,Audible Warning Tests,Planned,"Test lab, BMS hardware, warning system",48,05/13/2025,05/15/2025,Software Engineer,I-300
+TC_18_15_3,Performance Limitation Warning Tests,Planned,"Test lab, BMS hardware, load simulator, warning system",72,05/16/2025,05/19/2025,Software Engineer,I-300
+TC_18_15_4,Safety Risk Warning Tests,Planned,"Test lab, BMS hardware, fault injection, warning system",72,05/20/2025,05/23/2025,Software Engineer,I-300
+TC_18_16_1,Cell Temperature Monitoring Tests,Failed,"Climate chamber, BMS hardware, thermal sensors",96,05/24/2025,05/29/2025,Software Engineer,I-300
+TC_18_16_2,Module Temperature Monitoring Tests,Failed,"Climate chamber, BMS hardware, thermal sensors",72,05/30/2025,2/6/25,Software Engineer,I-300
+TC_18_16_3,Temperature Limit Warning Tests,Planned,"Climate chamber, BMS hardware, warning system",72,3/6/25,6/6/25,Software Engineer,I-300
+TC_18_16_4,Shutdown Tests,Planned,"Climate chamber, BMS hardware, load simulator",72,7/6/25,10/6/25,Software Engineer,I-300
+TC_18_17_1,Refer to 18.11,Planned,-,-,-,-,Software Engineer,I-300
+TC_18_18_1,ECE-R10 Compliance Tests,Planned,EMC anechoic chamber,96,11/6/25,06/16/2025,EMC Engineer,I-300
+TC_18_18_2,CISPR 25 Compliance Tests,Planned,EMC anechoic chamber,96,06/17/2025,06/22/2025,EMC Engineer,I-300
+TC_18_18_3,Shielding Effectiveness Tests,Planned,EMC anechoic chamber,72,06/23/2025,06/26/2025,EMC Engineer,I-300
+TC_18_18_4,Filtering Tests,Failed,EMC anechoic chamber,72,06/27/2025,06/30/2025,EMC Engineer,I-300
+TC_18_18_5,External Radiation Immunity Tests,Planned,EMC anechoic chamber,96,1/7/25,6/7/25,EMC Engineer,I-300
+TC_18_19_1,Central Grounding Point Tests,Planned,"Test lab, measuring instruments",48,7/7/25,9/7/25,Electrical Engineer,I-300
+TC_18_19_2,Potential Separation Tests,Failed,"Test lab, measuring instruments",48,10/7/25,12/7/25,Electrical Engineer,I-300
+TC_18_19_3,Equipotential Bonding Tests,Failed,"Test lab, measuring instruments",48,07/13/2025,07/15/2025,Electrical Engineer,I-300
+TC_18_20_1,ECE-R100 Compliance Tests,Planned,Fire safety test lab,96,07/16/2025,07/21/2025,Fire Safety Engineer,I-300
+TC_18_20_2,Ventilation Tests,Planned,Fire safety test lab,72,07/22/2025,07/25/2025,Fire Safety Engineer,I-300
+TC_18_20_3,Pressure Relief Tests,Failed,Fire safety test lab,72,07/26/2025,07/29/2025,Fire Safety Engineer,I-300
+TC_18_20_4,Thermal Monitoring and Shutdown Tests,Planned,"Fire safety test lab, BMS hardware",96,07/30/2025,4/8/25,Fire Safety Engineer,I-300
+TC_18_20_5,Inert Gas System Tests,Planned,Fire safety test lab,72,5/8/25,8/8/25,Fire Safety Engineer,I-300
+TC_18_21_1,Integrated Protection Tests,Planned,Lightning test lab,96,9/8/25,08/14/2025,Electrical Engineer,I-300
+TC_18_21_2,Discharge Path Tests,Failed,Lightning test lab,72,08/15/2025,08/18/2025,Electrical Engineer,I-300
+TC_18_21_3,Surge Arrester Tests,Planned,Lightning test lab,72,08/19/2025,08/22/2025,Electrical Engineer,I-300
+TC_18_22_1,Current Distribution Tests,Failed,"Test lab, BMS hardware, load simulator",96,08/23/2025,08/28/2025,Software Engineer,I-300
+TC_18_22_2,Voltage Balancing Tests,Planned,"Test lab, BMS hardware, load simulator",96,08/29/2025,3/9/25,Software Engineer,I-300
+TC_18_22_3,Thermal Distribution Tests,Planned,"Climate chamber, BMS hardware, load simulator",96,4/9/25,9/9/25,Software Engineer,I-300
+TC_18_23_1,Leakage Current Measurement Tests,Planned,"Test lab, BMS hardware, leakage current tester",72,10/9/25,09/13/2025,Software Engineer,I-300
+TC_18_23_2,Shutdown Tests,Planned,"Test lab, BMS hardware, leakage current tester",72,09/14/2025,09/17/2025,Software Engineer,I-300
+TC_18_24_1,HV/LV Separation Tests,Planned,"Test lab, measuring instruments",48,09/18/2025,09/20/2025,Electrical Engineer,I-300
+TC_18_24_2,Ground Loop Tests,Planned,"Test lab, measuring instruments",48,09/21/2025,09/23/2025,Electrical Engineer,I-300

@@ -1,0 +1,84 @@
+test_set_id,Test Set
+TS_1_1,Cell Design Tests
+TS_1_2,Module Design Tests
+TS_2_1,Housing Material Tests
+TS_2_2,Load Tests
+TS_2_3,Water Ingress Tests
+TS_2_4,Lifting Eye Tests
+TS_2_5,Mounting Point Tests
+TS_3_1,Voltage Rating Tests
+TS_3_2,Current Rating Tests
+TS_3_3,Vibration Tests
+TS_3_4,Environmental Tests
+TS_3_5,Shielding Tests
+TS_3_6,Grounding Tests
+TS_3_7,EMC Tests
+TS_4_1,Heat Resistance Tests
+TS_5_1,Cooling Performance Tests
+TS_5_2,Coolant Compatibility Tests
+TS_5_3,Component Tests
+TS_6_1,Redundant Cooling System Tests
+TS_7_1,Cooling Efficiency Tests
+TS_8_1,Coolant Tests
+TS_9_1,Heat Dissipation Tests
+TS_10_1,Temperature Uniformity Tests
+TS_11_1,Temperature Sensor Tests
+TS_12_1,BMS Hardware Tests
+TS_12_2,Operating System Tests
+TS_12_3,Cell Monitoring Tests
+TS_12_4,SOC and Range Calculation Tests
+TS_12_5,Thermal Management Tests
+TS_12_6,Lifetime Monitoring Tests
+TS_12_7,Fault Diagnosis Tests
+TS_12_8,Safety Monitoring Tests
+TS_12_9,Cryptography Tests
+TS_12_10,Diagnostic Interface Tests
+TS_12_11,Vehicle Integration Tests
+TS_12_12,Functional Safety Tests
+TS_12_13,Charge Control Tests
+TS_12_14,AC Charging Tests
+TS_12_15,DC Charging Tests
+TS_12_16,Thermal Management Charging Tests
+TS_12_17,Charge Statistics and History Tests
+TS_12_18,Charge Optimization Tests
+TS_13_1,Safety System Tests
+TS_14_1,Mechanical Integration Tests
+TS_15_1,Serviceability Tests
+TS_16_1,EMC Tests
+TS_17_1,Interface Tests
+TS_17_2,Mechanical Mounting Tests
+TS_17_3,Housing Ventilation Tests
+TS_17_4,Electrical Connection Tests
+TS_17_5,Cooling Connection Tests
+TS_17_6,Coolant Tests
+TS_17_7,Cooling Circuit Integration Tests
+TS_17_8,Power Supply Tests
+TS_17_9,Power Connection Tests
+TS_17_10,Housing Ground Tests
+TS_17_11,Terminal 30B Tests
+TS_17_12,Emergency Stop Tests
+TS_17_13,Crash Signal Tests
+TS_18_1,Operating Mode Tests
+TS_18_2,Efficiency Tests
+TS_18_3,Control Tests
+TS_18_4,Engine Start Tests
+TS_18_5,MSA-Start and Jump Start Tests
+TS_18_6,Voltage Ripple Tests
+TS_18_7,Communication Interface Tests
+TS_18_8,Safety and Self-Protection Tests
+TS_18_9,HV Interlock Tests
+TS_18_10,DC Link Discharge Tests
+TS_18_11,Isolation Tests
+TS_18_12,Touch Protection Tests
+TS_18_13,Marking Tests
+TS_18_14,Low Temperature Tests
+TS_18_15,Temperature Warning System Tests
+TS_18_16,Thermal Monitoring Tests
+TS_18_17,Isolation Tests
+TS_18_18,EMC Tests
+TS_18_19,Grounding System Tests
+TS_18_20,Fire and Explosion Protection Tests
+TS_18_21,Lightning Protection Tests
+TS_18_22,Load Distribution Tests
+TS_18_23,Leakage Current Monitoring Tests
+TS_18_24,Potential Separation Tests
