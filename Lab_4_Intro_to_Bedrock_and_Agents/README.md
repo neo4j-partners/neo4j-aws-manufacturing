@@ -82,7 +82,7 @@ Key concepts:
 2. Click **Clone a Repository** button
 3. In the "Clone Git Repository" dialog, enter the repository URL:
    ```
-   https://github.com/neo4j-partners/hands-on-lab-neo4j-and-bedrock.git
+   https://github.com/neo4j-partners/neo4j-aws-manufacturing.git
    ```
 4. Leave "Open README files" checked and click **Clone** to download the lab materials
 
