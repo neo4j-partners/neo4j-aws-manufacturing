@@ -61,25 +61,20 @@ If you're completing this lab independently or your organizer has instructed you
 
 After your Aura instance is running, restore the pre-built knowledge graph:
 
-### Step 1: Download the Backup File
+### Step 1: Download the Dump File
 
-1. Download the backup file from GitHub:
-   - **Download link:** [manufacturing_data.backup](https://github.com/neo4j-partners/hands-on-lab-neo4j-and-bedrock/raw/refs/heads/main/Lab_1_Aura_Setup/data/manufacturing_data.backup)
+1. Download the dump file from GitHub:
+   - **Download link:** [manufacturing_demo.dump](https://github.com/neo4j-partners/neo4j-aws-manufacturing/raw/refs/heads/main/Lab_1_Aura_Setup/data/manufacturing_demo.dump)
 2. Save the file to a location you can easily find (e.g., your Downloads folder)
 
-### Step 2: Upload to Aura
+### Step 2: Restore to Aura
 
 1. Go to your instance in the [Aura Console](https://console.neo4j.io)
-2. Click the **...** menu on your instance and select **Backup & restore**
+2. Click on your instance, select the **Restore from backup file** tab, and drag the `manufacturing_demo.dump` file you downloaded into the dialog:
 
-   ![Instance menu showing Backup & restore option](images/backup_restore.png)
+   ![Restore from backup file tab with drag and drop area](images/restore_backup.png)
 
-3. Click **Upload backup** to open the upload dialog
-4. Drag the `manufacturing_data.backup` file you downloaded into the dialog:
-
-   ![Upload backup dialog with drag and drop area](images/restore_drag.png)
-
-5. Wait for the restore to complete - your instance will restart with the manufacturing knowledge graph
+3. Wait for the restore to complete - your instance will restart with the manufacturing knowledge graph
 
 The backup contains:
 - Product development data for the R2D2 automotive product
