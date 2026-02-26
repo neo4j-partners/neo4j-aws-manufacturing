@@ -53,7 +53,9 @@ def _connect(settings: Settings) -> Generator[Driver, None, None]:
 
 @app.command()
 def load() -> None:
-    """Load all nodes and relationships into Neo4j."""
+    """Load all CSV data, generate embeddings, and create indexes in a single pipeline."""
+    from .embedder import embed_descriptions
+
     settings = Settings()  # type: ignore[call-arg]
     start = time.monotonic()
 
@@ -68,23 +70,8 @@ def load() -> None:
         load_nodes(driver, settings.data_dir)
         print()
         load_relationships(driver, settings.data_dir)
+        print()
 
-        verify(driver)
-
-    elapsed = time.monotonic() - start
-    print(f"\nDone in {_fmt_elapsed(elapsed)}.")
-
-
-@app.command("embed")
-def embed_cmd() -> None:
-    """Generate embeddings for Requirement and Defect descriptions using AWS Bedrock."""
-    from .embedder import embed_descriptions
-
-    settings = Settings()  # type: ignore[call-arg]
-    start = time.monotonic()
-
-    print(f"Connecting to {settings.neo4j_uri}...")
-    with _connect(settings) as driver:
         embed_descriptions(driver, settings)
 
         print("\nCreating vector indexes...")

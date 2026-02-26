@@ -14,12 +14,12 @@ from .config import Settings
 EMBED_BATCH_SIZE = 25
 
 
-def _get_bedrock_client(settings: Settings):
+def get_bedrock_client(settings: Settings):
     """Create a Bedrock Runtime client."""
     return boto3.client("bedrock-runtime", region_name=settings.region)
 
 
-def _embed_text(client, model_id: str, text: str) -> list[float]:
+def embed_text(client, model_id: str, text: str) -> list[float]:
     """Embed a single text using Bedrock Titan Embed v2."""
     response = client.invoke_model(
         modelId=model_id,
@@ -65,7 +65,7 @@ def _embed_and_store(
         batch = records[i : i + EMBED_BATCH_SIZE]
         updates = []
         for row in batch:
-            embedding = _embed_text(client, model_id, row["text"])
+            embedding = embed_text(client, model_id, row["text"])
             updates.append({"id": row["id"], "embedding": embedding})
 
         # Write batch back to Neo4j.
@@ -85,7 +85,7 @@ def _embed_and_store(
 
 def embed_descriptions(driver: Driver, settings: Settings) -> None:
     """Generate embeddings for Requirement and Defect description fields."""
-    client = _get_bedrock_client(settings)
+    client = get_bedrock_client(settings)
     model_id = settings.embedding_model_id
 
     print(f"Using model: {model_id} (region: {settings.region})\n")

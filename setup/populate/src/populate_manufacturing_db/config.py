@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
-
 from pydantic import DirectoryPath, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -38,7 +36,7 @@ class Settings(BaseSettings):
 
     data_dir: DirectoryPath = _DATA_DIR  # type: ignore[assignment]
 
-    # AWS Bedrock — required for the `embed` command.
+    # AWS Bedrock — used during the embedding phase of `load`.
     embedding_model_id: str = "amazon.titan-embed-text-v2:0"
     region: str = "us-west-2"
 

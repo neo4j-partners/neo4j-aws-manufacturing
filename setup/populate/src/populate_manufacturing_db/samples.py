@@ -4,60 +4,7 @@ from __future__ import annotations
 
 from neo4j import Driver
 
-_W = 70
-
-
-# ---------------------------------------------------------------------------
-# Formatting helpers
-# ---------------------------------------------------------------------------
-
-
-def _header(title: str, description: str) -> None:
-    print(f"\n{'=' * _W}")
-    print(f"  {title}")
-    print(f"{'=' * _W}")
-    print(f"\n  {description}\n")
-
-
-def _cypher(query: str) -> None:
-    lines = query.strip().splitlines()
-    indents = [len(ln) - len(ln.lstrip()) for ln in lines if ln.strip()]
-    base = min(indents) if indents else 0
-    print("  Cypher:")
-    for ln in lines:
-        print(f"    {ln[base:]}")
-    print()
-
-
-def _table(headers: list[str], rows: list[list], widths: list[int] | None = None) -> None:
-    if not rows:
-        print("  (no results)\n")
-        return
-    if widths is None:
-        widths = []
-        for i, h in enumerate(headers):
-            col_max = len(h)
-            for row in rows:
-                col_max = max(col_max, len(str(row[i] if i < len(row) else "")))
-            widths.append(min(col_max + 1, 50))
-    print("  " + "  ".join(h.ljust(w) for h, w in zip(headers, widths)))
-    print("  " + "  ".join("\u2500" * w for w in widths))
-    for row in rows:
-        cells = []
-        for val, w in zip(row, widths):
-            s = str(val) if val is not None else "\u2014"
-            if len(s) > w:
-                s = s[: w - 1] + "\u2026"
-            cells.append(s.ljust(w))
-        print("  " + "  ".join(cells))
-    print()
-
-
-def _val(v, max_len: int = 0) -> str:
-    s = str(v) if v is not None else "\u2014"
-    if max_len and len(s) > max_len:
-        s = s[: max_len - 1] + "\u2026"
-    return s
+from .formatting import _W, banner, cypher, header, table, val
 
 
 # ---------------------------------------------------------------------------
@@ -73,11 +20,11 @@ RETURN p.name AS product, p.description AS description, domains"""
 
 
 def _product_overview(driver: Driver) -> None:
-    _header(
+    header(
         "1. Product Overview",
         "Product with its Technology Domains and Component counts.",
     )
-    _cypher(_PRODUCT_Q)
+    cypher(_PRODUCT_Q)
     rows, _, _ = driver.execute_query(_PRODUCT_Q)
     if not rows:
         print("  (no results)\n")
@@ -107,15 +54,15 @@ LIMIT $limit"""
 
 
 def _requirement_traceability(driver: Driver, limit: int) -> None:
-    _header(
+    header(
         "2. Requirement Traceability",
         "Requirements traced from Component through TestSets, TestCases, to Defects.",
     )
-    _cypher(_TRACE_Q)
+    cypher(_TRACE_Q)
     rows, _, _ = driver.execute_query(_TRACE_Q, limit=limit)
-    _table(
+    table(
         ["Component", "Requirement", "Type", "TestSets", "TestCases", "Defects"],
-        [[r["component"], _val(r["requirement"], 25), r["type"],
+        [[r["component"], val(r["requirement"], 25), r["type"],
           r["test_sets"], r["test_cases"], r["defects"]] for r in rows],
     )
 
@@ -138,16 +85,16 @@ LIMIT $limit"""
 
 
 def _change_impact(driver: Driver, limit: int) -> None:
-    _header(
+    header(
         "3. Change Impact Analysis",
         "Change proposals with the requirements and test sets they affect.",
     )
-    _cypher(_CHANGE_Q)
+    cypher(_CHANGE_Q)
     rows, _, _ = driver.execute_query(_CHANGE_Q, limit=limit)
     for r in rows:
         tests = ", ".join(r["affected_test_sets"]) if r["affected_test_sets"] else "(none)"
         print(f"  {r['change_id']} [{r['criticality']}/{r['status']}]")
-        print(f"    Requirement: {_val(r['requirement'], 50)}")
+        print(f"    Requirement: {val(r['requirement'], 50)}")
         print(f"    Test Sets:   {tests}")
     print()
 
@@ -168,16 +115,16 @@ ORDER BY m.deadline"""
 
 
 def _milestone_timeline(driver: Driver) -> None:
-    _header(
+    header(
         "4. Milestone Timeline",
         "Milestones in order with requirement counts and NEXT chain.",
     )
-    _cypher(_MILESTONE_Q)
+    cypher(_MILESTONE_Q)
     rows, _, _ = driver.execute_query(_MILESTONE_Q)
-    _table(
+    table(
         ["Milestone", "Deadline", "Requirements", "Next"],
         [[r["milestone"], r["deadline"], r["requirements"],
-          _val(r["next_milestone"])] for r in rows],
+          val(r["next_milestone"])] for r in rows],
     )
 
 
@@ -198,16 +145,16 @@ LIMIT $limit"""
 
 
 def _defect_summary(driver: Driver, limit: int) -> None:
-    _header(
+    header(
         "5. Defect Summary",
         "Defects traced back through TestCase \u2192 TestSet \u2192 Requirement \u2192 Component.",
     )
-    _cypher(_DEFECT_Q)
+    cypher(_DEFECT_Q)
     rows, _, _ = driver.execute_query(_DEFECT_Q, limit=limit)
     for r in rows:
         comps = ", ".join(r["components"]) if r["components"] else "(unknown)"
         print(f"  {r['defect_id']} [{r['severity']}/{r['status']}]")
-        print(f"    {_val(r['description'], 60)}")
+        print(f"    {val(r['description'], 60)}")
         print(f"    Components: {comps}")
     print()
 
@@ -231,15 +178,15 @@ LIMIT $limit"""
 
 
 def _test_coverage(driver: Driver, limit: int) -> None:
-    _header(
+    header(
         "6. Test Coverage",
         "Requirements with their test case counts by status.",
     )
-    _cypher(_COVERAGE_Q)
+    cypher(_COVERAGE_Q)
     rows, _, _ = driver.execute_query(_COVERAGE_Q, limit=limit)
-    _table(
+    table(
         ["Req ID", "Requirement", "Total", "Passed", "Failed", "Planned"],
-        [[r["req_id"], _val(r["requirement"], 25), r["total_cases"],
+        [[r["req_id"], val(r["requirement"], 25), r["total_cases"],
           r["passed"], r["failed"], r["planned"]] for r in rows],
     )
 
@@ -265,26 +212,26 @@ RETURN seed.name AS seed_name,
 
 
 def _vector_requirements(driver: Driver, limit: int) -> None:
-    _header(
+    header(
         "7. Semantic Search: Requirements",
         "Picks a random requirement and finds the most similar ones using\n"
         "  the vector index (reuses stored embeddings \u2014 no API key needed).",
     )
-    _cypher(_REQ_VECTOR_Q)
+    cypher(_REQ_VECTOR_Q)
     try:
         rows, _, _ = driver.execute_query(_REQ_VECTOR_Q, limit=limit, top_k=limit + 1)
     except Exception:
-        print("  (vector index not available \u2014 run 'embed' first)\n")
+        print("  (vector index not available \u2014 run 'load' first)\n")
         return
     if not rows:
-        print("  (no requirements with embeddings \u2014 run 'embed' first)\n")
+        print("  (no requirements with embeddings \u2014 run 'load' first)\n")
         return
     print(f"  Seed: \"{rows[0]['seed_name']}\"")
     print(f"        {rows[0]['seed_desc']}\u2026\n")
     print(f"  {'Score':<8}  Similar requirement")
     print(f"  {'\u2500' * 8}  {'\u2500' * 56}")
     for r in rows:
-        print(f"  {r['similarity']:.4f}    {r['match_name']}: {_val(r['match_desc'], 45)}")
+        print(f"  {r['similarity']:.4f}    {r['match_name']}: {val(r['match_desc'], 45)}")
     print()
 
 
@@ -309,25 +256,25 @@ RETURN seed.defect_id AS seed_id,
 
 
 def _vector_defects(driver: Driver, limit: int) -> None:
-    _header(
+    header(
         "8. Semantic Search: Defects",
         "Picks a random defect and finds the most similar ones using\n"
         "  the vector index (reuses stored embeddings \u2014 no API key needed).",
     )
-    _cypher(_DEFECT_VECTOR_Q)
+    cypher(_DEFECT_VECTOR_Q)
     try:
         rows, _, _ = driver.execute_query(_DEFECT_VECTOR_Q, limit=limit, top_k=limit + 1)
     except Exception:
-        print("  (vector index not available \u2014 run 'embed' first)\n")
+        print("  (vector index not available \u2014 run 'load' first)\n")
         return
     if not rows:
-        print("  (no defects with embeddings \u2014 run 'embed' first)\n")
+        print("  (no defects with embeddings \u2014 run 'load' first)\n")
         return
     print(f"  Seed: {rows[0]['seed_id']} \u2014 \"{rows[0]['seed_desc']}\"\n")
     print(f"  {'Score':<8}  Similar defect")
     print(f"  {'\u2500' * 8}  {'\u2500' * 56}")
     for r in rows:
-        print(f"  {r['similarity']:.4f}    {r['match_id']}: {_val(r['match_desc'], 50)}")
+        print(f"  {r['similarity']:.4f}    {r['match_id']}: {val(r['match_desc'], 50)}")
     print()
 
 
@@ -338,9 +285,7 @@ def _vector_defects(driver: Driver, limit: int) -> None:
 
 def run_all_samples(driver: Driver, sample_size: int = 10) -> None:
     """Run all sample queries with formatted output."""
-    print(f"\n{'#' * _W}")
-    print("  Manufacturing Product Development \u2014 Sample Queries")
-    print(f"{'#' * _W}")
+    banner("Manufacturing Product Development \u2014 Sample Queries")
     print(f"\n  Sample size: {sample_size} rows per section\n")
 
     _product_overview(driver)

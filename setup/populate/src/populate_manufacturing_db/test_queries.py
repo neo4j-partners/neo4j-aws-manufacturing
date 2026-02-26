@@ -9,58 +9,13 @@ Run via:  uv run populate-manufacturing-db test-queries
 
 from __future__ import annotations
 
-import json
 import time
 
-import boto3
 from neo4j import Driver
 
 from .config import Settings
-
-_W = 70
-
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
-
-def _header(title: str, description: str) -> None:
-    print(f"\n{'=' * _W}")
-    print(f"  {title}")
-    print(f"{'=' * _W}")
-    print(f"\n  {description}\n")
-
-
-def _cypher(query: str) -> None:
-    lines = query.strip().splitlines()
-    indents = [len(ln) - len(ln.lstrip()) for ln in lines if ln.strip()]
-    base = min(indents) if indents else 0
-    print("  Cypher:")
-    for ln in lines:
-        print(f"    {ln[base:]}")
-    print()
-
-
-def _val(v, max_len: int = 0) -> str:
-    s = str(v) if v is not None else "\u2014"
-    if max_len and len(s) > max_len:
-        s = s[: max_len - 1] + "\u2026"
-    return s
-
-
-def _embed_query(client, model_id: str, text: str) -> list[float]:
-    """Embed a single query string using Bedrock Titan Embed v2."""
-    response = client.invoke_model(
-        modelId=model_id,
-        body=json.dumps({
-            "inputText": text,
-            "dimensions": 1024,
-            "normalize": True,
-        }),
-    )
-    result = json.loads(response["body"].read())
-    return result["embedding"]
+from .embedder import embed_text, get_bedrock_client
+from .formatting import _W, banner, cypher, header, val
 
 
 # ---------------------------------------------------------------------------
@@ -80,20 +35,20 @@ ORDER BY score DESC"""
 def _vector_requirement_search(
     driver: Driver, client, model_id: str, query: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "1. Vector Similarity — Requirements",
         f'Find requirements semantically similar to: "{query}"',
     )
-    _cypher(_VEC_REQ_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_VEC_REQ_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(_VEC_REQ_Q, embedding=embedding, top_k=top_k)
     if not rows:
-        print("  (no results — run 'embed' first)\n")
+        print("  (no results — run 'load' first)\n")
         return
     print(f"  {'Score':<8}  {'Requirement':<30}  Description")
     print(f"  {'\u2500' * 8}  {'\u2500' * 30}  {'\u2500' * 28}")
     for r in rows:
-        print(f"  {r['score']:.4f}    {_val(r['name'], 28):<30}  {_val(r['description'], 40)}")
+        print(f"  {r['score']:.4f}    {val(r['name'], 28):<30}  {val(r['description'], 40)}")
     print()
 
 
@@ -115,22 +70,22 @@ ORDER BY score DESC"""
 def _vector_defect_search(
     driver: Driver, client, model_id: str, query: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "2. Vector Similarity — Defects",
         f'Find defects semantically similar to: "{query}"',
     )
-    _cypher(_VEC_DEF_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_VEC_DEF_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(_VEC_DEF_Q, embedding=embedding, top_k=top_k)
     if not rows:
-        print("  (no results — run 'embed' first)\n")
+        print("  (no results — run 'load' first)\n")
         return
     print(f"  {'Score':<8}  {'Defect':<10}  {'Severity':<10}  Description")
     print(f"  {'\u2500' * 8}  {'\u2500' * 10}  {'\u2500' * 10}  {'\u2500' * 36}")
     for r in rows:
         print(
-            f"  {r['score']:.4f}    {r['defect_id']:<10}  {_val(r['severity'], 10):<10}  "
-            f"{_val(r['description'], 40)}"
+            f"  {r['score']:.4f}    {r['defect_id']:<10}  {val(r['severity'], 10):<10}  "
+            f"{val(r['description'], 40)}"
         )
     print()
 
@@ -158,19 +113,19 @@ ORDER BY score DESC"""
 def _vector_graph_requirement(
     driver: Driver, client, model_id: str, query: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "3. Vector + Graph Context — Requirements",
         f'Semantic search with component and test set context.\n  Query: "{query}"',
     )
-    _cypher(_VEC_GRAPH_REQ_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_VEC_GRAPH_REQ_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(_VEC_GRAPH_REQ_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no results)\n")
         return
     for r in rows:
         print(f"  [{r['score']:.4f}] {r['name']} ({r['component']})")
-        print(f"           {_val(r['description'], 60)}")
+        print(f"           {val(r['description'], 60)}")
         print(f"           Test sets: {r['test_sets']}")
     print()
 
@@ -204,12 +159,12 @@ ORDER BY score DESC"""
 def _vector_graph_defect(
     driver: Driver, client, model_id: str, query: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "4. Vector + Graph Context — Defect Traceability",
         f'Semantic defect search with full traceability chain.\n  Query: "{query}"',
     )
-    _cypher(_VEC_GRAPH_DEF_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_VEC_GRAPH_DEF_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(_VEC_GRAPH_DEF_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no results)\n")
@@ -221,8 +176,8 @@ def _vector_graph_defect(
         print(f"  [{r['score']:.4f}] {r['defect_id']} — {r['description']}")
         print(f"           Severity: {r['severity']}  Status: {r['status']}")
         print(f"           Components: {comps}")
-        print(f"           Requirements: {_val(reqs, 60)}")
-        print(f"           Test cases: {_val(tests, 60)}")
+        print(f"           Requirements: {val(reqs, 60)}")
+        print(f"           Test cases: {val(tests, 60)}")
     print()
 
 
@@ -253,13 +208,13 @@ ORDER BY req_score DESC"""
 def _cross_domain_search(
     driver: Driver, client, model_id: str, query: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "5. Cross-Domain — Requirements → Defects",
         f'Find requirements matching "{query}", then traverse\n'
         "  the graph to surface related defects.",
     )
-    _cypher(_CROSS_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_CROSS_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(_CROSS_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no matching requirements with defects)\n")
@@ -292,12 +247,12 @@ ORDER BY score DESC"""
 def _hybrid_type_filter(
     driver: Driver, client, model_id: str, query: str, req_type: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "6. Hybrid — Vector + Property Filter",
         f'Semantic search filtered to type="{req_type}".\n  Query: "{query}"',
     )
-    _cypher(_HYBRID_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_HYBRID_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(
         _HYBRID_Q, embedding=embedding, top_k=top_k, req_type=req_type
     )
@@ -308,8 +263,8 @@ def _hybrid_type_filter(
     print(f"  {'\u2500' * 8}  {'\u2500' * 6}  {'\u2500' * 12}  {'\u2500' * 25}  {'\u2500' * 20}")
     for r in rows:
         print(
-            f"  {r['score']:.4f}    {r['type']:<6}  {_val(r['component'], 12):<12}  "
-            f"{_val(r['name'], 25):<25}  {_val(r['description'], 35)}"
+            f"  {r['score']:.4f}    {r['type']:<6}  {val(r['component'], 12):<12}  "
+            f"{val(r['name'], 25):<25}  {val(r['description'], 35)}"
         )
     print()
 
@@ -337,12 +292,12 @@ ORDER BY score DESC"""
 def _hybrid_severity_filter(
     driver: Driver, client, model_id: str, query: str, severity: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "7. Hybrid — Vector + Severity Filter",
         f'Find {severity}-severity defects matching: "{query}"',
     )
-    _cypher(_HYBRID_SEV_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_HYBRID_SEV_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(
         _HYBRID_SEV_Q, embedding=embedding, top_k=top_k, severity=severity
     )
@@ -353,7 +308,7 @@ def _hybrid_severity_filter(
         reqs = ", ".join(r["affected_requirements"]) if r["affected_requirements"] else "(none)"
         print(f"  [{r['score']:.4f}] {r['defect_id']} [{r['severity']}/{r['status']}]")
         print(f"           {r['description']}")
-        print(f"           Affected: {_val(reqs, 60)}")
+        print(f"           Affected: {val(reqs, 60)}")
     print()
 
 
@@ -383,13 +338,13 @@ ORDER BY score DESC"""
 def _change_impact_search(
     driver: Driver, client, model_id: str, query: str, top_k: int
 ) -> None:
-    _header(
+    header(
         "8. Multi-Hop — Semantic Search → Change Impact",
         f'Find requirements matching "{query}", then\n'
         "  traverse to active change proposals affecting them.",
     )
-    _cypher(_CHANGE_IMPACT_Q)
-    embedding = _embed_query(client, model_id, query)
+    cypher(_CHANGE_IMPACT_Q)
+    embedding = embed_text(client, model_id, query)
     rows, _, _ = driver.execute_query(_CHANGE_IMPACT_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no matching requirements with change proposals)\n")
@@ -399,7 +354,7 @@ def _change_impact_search(
         for ch in r["changes"]:
             print(
                 f"           \u2514\u2500 {ch['change_id']} [{ch['criticality']}/{ch['status']}] "
-                f"{_val(ch['description'], 45)}"
+                f"{val(ch['description'], 45)}"
             )
     print()
 
@@ -423,12 +378,10 @@ _TEST_CASES: list[tuple] = [
 
 def run_test_queries(driver: Driver, settings: Settings, top_k: int = 5) -> None:
     """Run all test queries with live Bedrock embeddings."""
-    client = boto3.client("bedrock-runtime", region_name=settings.region)
+    client = get_bedrock_client(settings)
     model_id = settings.embedding_model_id
 
-    print(f"\n{'#' * _W}")
-    print("  Semantic Similarity & Hybrid Search — Test Queries")
-    print(f"{'#' * _W}")
+    banner("Semantic Similarity & Hybrid Search — Test Queries")
     print(f"\n  Model: {model_id} (region: {settings.region})")
     print(f"  Top-K: {top_k}\n")
 

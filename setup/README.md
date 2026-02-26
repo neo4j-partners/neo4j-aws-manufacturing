@@ -7,7 +7,7 @@ Populates a Neo4j Aura instance with the Manufacturing Product Development datas
 - **Python 3.11+**
 - **[uv](https://docs.astral.sh/uv/)** package manager
 - **Neo4j Aura** instance (or any Neo4j 5.x+ database)
-- **AWS credentials** configured for Bedrock access (embedding commands only)
+- **AWS credentials** configured for Bedrock access (used during embedding phase of load)
 
 ## Quick Start
 
@@ -21,26 +21,42 @@ uv sync
 cp .env.example .env
 # Edit .env with your Neo4j URI, username, and password
 
-# Load the graph
+# Load the graph (nodes, relationships, embeddings, and indexes in one step)
 uv run populate-manufacturing-db load
-
-# Generate embeddings (requires AWS Bedrock access)
-uv run populate-manufacturing-db embed
 
 # Verify counts
 uv run populate-manufacturing-db verify
+
+# Run sample queries (includes vector similarity search)
+uv run populate-manufacturing-db samples
+
+# Run semantic similarity and hybrid search test queries
+uv run populate-manufacturing-db test-queries
 ```
 
 ## CLI Commands
 
 | Command | Description |
 |---|---|
-| `load` | Load all CSV data as nodes + relationships (549 nodes, 1,102 rels) |
-| `embed` | Generate Titan v2 embeddings for Requirement and Defect descriptions |
+| `load` | Full pipeline: CSV data → nodes → relationships → embeddings → vector indexes |
 | `verify` | Print node/relationship counts (read-only) |
 | `samples` | Run 8 sample queries including vector similarity search |
-| `test-queries` | Run semantic similarity and hybrid search test queries |
+| `test-queries` | Run 8 semantic similarity and hybrid search test queries (requires Bedrock) |
 | `clean` | Delete all nodes and relationships |
+
+## What `load` Does
+
+A single command runs the entire setup pipeline:
+
+1. **Constraints** — 11 uniqueness constraints for all node types
+2. **Indexes** — 5 property indexes for common query fields
+3. **Nodes** — 549 nodes across 11 labels from CSV files
+4. **Relationships** — 1,102 relationships across 12 types (including derived)
+5. **Embeddings** — 96 Titan Embed v2 embeddings (70 Requirement + 26 Defect descriptions)
+6. **Vector indexes** — `requirementEmbeddings` and `defectEmbeddings` (1024 dims, cosine)
+7. **Verify** — prints final counts
+
+Total runtime: ~21s (4s load + 17s embedding).
 
 ## Graph Data Model
 
@@ -51,11 +67,29 @@ uv run populate-manufacturing-db verify
 (TestCase) -[:DETECTED]-> (Defect)
 (Change) -[:CHANGE_AFFECTS_REQ]-> (Requirement)
 (Requirement) -[:REQUIRES_ML]-> (Milestone) -[:NEXT]-> (Milestone)
+(TestCase) -[:REQUIRES_ML]-> (MaturityLevel)
+(TestCase) -[:REQUIRES]-> (Resource)
 ```
 
 **11 node labels** — Product, TechnologyDomain, Component, Requirement, TestSet, TestCase, Defect, Change, Milestone, MaturityLevel, Resource
 
-**Vector indexes** — `requirementEmbeddings` and `defectEmbeddings` (1024 dims, cosine similarity)
+## Project Structure
+
+```
+setup/populate/
+├── pyproject.toml
+├── .env.example
+├── PROPOSAL.md
+└── src/populate_manufacturing_db/
+    ├── main.py          # Typer CLI: load, clean, verify, samples, test-queries
+    ├── config.py        # pydantic-settings (.env / CONFIG.txt fallback)
+    ├── schema.py        # Constraints, property indexes, vector indexes
+    ├── loader.py        # CSV reading, batched MERGE, derived nodes/rels
+    ├── embedder.py      # Bedrock Titan Embed v2 (embed_text, embed_descriptions)
+    ├── formatting.py    # Shared display helpers (header, cypher, val, table, banner)
+    ├── samples.py       # 8 sample queries showcasing the graph
+    └── test_queries.py  # 8 semantic similarity + hybrid search queries
+```
 
 ## Data Source
 
