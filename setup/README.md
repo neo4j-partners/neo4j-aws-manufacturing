@@ -7,7 +7,7 @@ Populates a Neo4j Aura instance with the Manufacturing Product Development datas
 - **Python 3.11+**
 - **[uv](https://docs.astral.sh/uv/)** package manager
 - **Neo4j Aura** instance (or any Neo4j 5.x+ database)
-- **AWS credentials** configured for Bedrock access (used during embedding phase of load)
+- **OpenAI API key** (used during embedding phase of load and semantic search samples)
 
 ## Quick Start
 
@@ -40,8 +40,8 @@ uv run populate-manufacturing-db test-queries
 |---|---|
 | `load` | Full pipeline: CSV data → nodes → relationships → embeddings → vector indexes |
 | `verify` | Print node/relationship counts (read-only) |
-| `samples` | Run 8 sample queries including vector similarity search |
-| `test-queries` | Run 8 semantic similarity and hybrid search test queries (requires Bedrock) |
+| `samples` | Run 9 sample queries including vector similarity and semantic search |
+| `test-queries` | Run 8 semantic similarity and hybrid search test queries (requires OpenAI API key) |
 | `clean` | Delete all nodes and relationships |
 
 ## What `load` Does
@@ -52,8 +52,8 @@ A single command runs the entire setup pipeline:
 2. **Indexes** — 5 property indexes for common query fields
 3. **Nodes** — 549 nodes across 11 labels from CSV files
 4. **Relationships** — 1,102 relationships across 12 types (including derived)
-5. **Embeddings** — 96 Titan Embed v2 embeddings (70 Requirement + 26 Defect descriptions)
-6. **Vector indexes** — `requirementEmbeddings` and `defectEmbeddings` (1024 dims, cosine)
+5. **Embeddings** — 96 OpenAI embeddings (70 Requirement + 26 Defect descriptions)
+6. **Vector indexes** — `requirementEmbeddings` and `defectEmbeddings` (1536 dims, cosine)
 7. **Verify** — prints final counts
 
 Total runtime: ~21s (4s load + 17s embedding).
@@ -85,9 +85,9 @@ setup/populate/
     ├── config.py        # pydantic-settings (.env / CONFIG.txt fallback)
     ├── schema.py        # Constraints, property indexes, vector indexes
     ├── loader.py        # CSV reading, batched MERGE, derived nodes/rels
-    ├── embedder.py      # Bedrock Titan Embed v2 (embed_text, embed_descriptions)
+    ├── embedder.py      # OpenAI embeddings (embed_text, embed_descriptions)
     ├── formatting.py    # Shared display helpers (header, cypher, val, table, banner)
-    ├── samples.py       # 8 sample queries showcasing the graph
+    ├── samples.py       # 9 sample queries showcasing the graph
     └── test_queries.py  # 8 semantic similarity + hybrid search queries
 ```
 
