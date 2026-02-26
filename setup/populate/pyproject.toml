@@ -5,7 +5,7 @@ description = "Standalone Neo4j Aura data loader for the Manufacturing Product D
 requires-python = ">=3.11"
 dependencies = [
     "neo4j>=5.17.0",
-    "boto3>=1.35.0",
+    "openai>=1.0.0",
     "pydantic>=2.7.0",
     "pydantic-settings>=2.0.0",
     "typer>=0.15.0",

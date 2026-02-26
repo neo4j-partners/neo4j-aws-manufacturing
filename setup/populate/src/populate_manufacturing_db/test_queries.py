@@ -13,8 +13,10 @@ import time
 
 from neo4j import Driver
 
+from openai import OpenAI
+
 from .config import Settings
-from .embedder import embed_text, get_bedrock_client
+from .embedder import embed_text, get_openai_client, OPENAI_EMBEDDING_MODEL, OPENAI_EMBEDDING_DIMS
 from .formatting import _W, banner, cypher, header, val
 
 
@@ -33,14 +35,14 @@ ORDER BY score DESC"""
 
 
 def _vector_requirement_search(
-    driver: Driver, client, model_id: str, query: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, top_k: int
 ) -> None:
     header(
         "1. Vector Similarity — Requirements",
         f'Find requirements semantically similar to: "{query}"',
     )
     cypher(_VEC_REQ_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(_VEC_REQ_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no results — run 'load' first)\n")
@@ -68,14 +70,14 @@ ORDER BY score DESC"""
 
 
 def _vector_defect_search(
-    driver: Driver, client, model_id: str, query: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, top_k: int
 ) -> None:
     header(
         "2. Vector Similarity — Defects",
         f'Find defects semantically similar to: "{query}"',
     )
     cypher(_VEC_DEF_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(_VEC_DEF_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no results — run 'load' first)\n")
@@ -111,14 +113,14 @@ ORDER BY score DESC"""
 
 
 def _vector_graph_requirement(
-    driver: Driver, client, model_id: str, query: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, top_k: int
 ) -> None:
     header(
         "3. Vector + Graph Context — Requirements",
         f'Semantic search with component and test set context.\n  Query: "{query}"',
     )
     cypher(_VEC_GRAPH_REQ_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(_VEC_GRAPH_REQ_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no results)\n")
@@ -157,14 +159,14 @@ ORDER BY score DESC"""
 
 
 def _vector_graph_defect(
-    driver: Driver, client, model_id: str, query: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, top_k: int
 ) -> None:
     header(
         "4. Vector + Graph Context — Defect Traceability",
         f'Semantic defect search with full traceability chain.\n  Query: "{query}"',
     )
     cypher(_VEC_GRAPH_DEF_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(_VEC_GRAPH_DEF_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no results)\n")
@@ -206,7 +208,7 @@ ORDER BY req_score DESC"""
 
 
 def _cross_domain_search(
-    driver: Driver, client, model_id: str, query: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, top_k: int
 ) -> None:
     header(
         "5. Cross-Domain — Requirements → Defects",
@@ -214,7 +216,7 @@ def _cross_domain_search(
         "  the graph to surface related defects.",
     )
     cypher(_CROSS_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(_CROSS_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no matching requirements with defects)\n")
@@ -245,14 +247,14 @@ ORDER BY score DESC"""
 
 
 def _hybrid_type_filter(
-    driver: Driver, client, model_id: str, query: str, req_type: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, req_type: str, top_k: int
 ) -> None:
     header(
         "6. Hybrid — Vector + Property Filter",
         f'Semantic search filtered to type="{req_type}".\n  Query: "{query}"',
     )
     cypher(_HYBRID_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(
         _HYBRID_Q, embedding=embedding, top_k=top_k, req_type=req_type
     )
@@ -290,14 +292,14 @@ ORDER BY score DESC"""
 
 
 def _hybrid_severity_filter(
-    driver: Driver, client, model_id: str, query: str, severity: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, severity: str, top_k: int
 ) -> None:
     header(
         "7. Hybrid — Vector + Severity Filter",
         f'Find {severity}-severity defects matching: "{query}"',
     )
     cypher(_HYBRID_SEV_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(
         _HYBRID_SEV_Q, embedding=embedding, top_k=top_k, severity=severity
     )
@@ -336,7 +338,7 @@ ORDER BY score DESC"""
 
 
 def _change_impact_search(
-    driver: Driver, client, model_id: str, query: str, top_k: int
+    driver: Driver, client: OpenAI, query: str, top_k: int
 ) -> None:
     header(
         "8. Multi-Hop — Semantic Search → Change Impact",
@@ -344,7 +346,7 @@ def _change_impact_search(
         "  traverse to active change proposals affecting them.",
     )
     cypher(_CHANGE_IMPACT_Q)
-    embedding = embed_text(client, model_id, query)
+    embedding = embed_text(client, query)
     rows, _, _ = driver.execute_query(_CHANGE_IMPACT_Q, embedding=embedding, top_k=top_k)
     if not rows:
         print("  (no matching requirements with change proposals)\n")
@@ -377,12 +379,11 @@ _TEST_CASES: list[tuple] = [
 
 
 def run_test_queries(driver: Driver, settings: Settings, top_k: int = 5) -> None:
-    """Run all test queries with live Bedrock embeddings."""
-    client = get_bedrock_client(settings)
-    model_id = settings.embedding_model_id
+    """Run all test queries with live OpenAI embeddings."""
+    client = get_openai_client(settings)
 
     banner("Semantic Similarity & Hybrid Search — Test Queries")
-    print(f"\n  Model: {model_id} (region: {settings.region})")
+    print(f"\n  Model: {OPENAI_EMBEDDING_MODEL} ({OPENAI_EMBEDDING_DIMS} dims)")
     print(f"  Top-K: {top_k}\n")
 
     start = time.monotonic()
@@ -390,7 +391,7 @@ def run_test_queries(driver: Driver, settings: Settings, top_k: int = 5) -> None
 
     for fn, query, kwargs in _TEST_CASES:
         try:
-            fn(driver, client, model_id, query, top_k=top_k, **kwargs)
+            fn(driver, client, query, top_k=top_k, **kwargs)
             passed += 1
         except Exception as exc:
             print(f"  [FAIL] {exc}\n")

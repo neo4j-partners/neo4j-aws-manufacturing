@@ -1,42 +1,46 @@
-"""Bedrock Titan Embed v2 integration: embed Requirement and Defect descriptions."""
+"""OpenAI embedding integration: embed Requirement and Defect descriptions."""
 
 from __future__ import annotations
 
-import json
 import time
 
-import boto3
+from openai import OpenAI
 from neo4j import Driver
 
 from .config import Settings
 
-# Bedrock rate-limit-friendly batch size (sequential calls).
-EMBED_BATCH_SIZE = 25
+# OpenAI supports up to ~8k inputs per batch; we use a smaller size
+# to keep Neo4j write transactions manageable.
+EMBED_BATCH_SIZE = 100
+
+# Default model and dimensions.
+OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
+OPENAI_EMBEDDING_DIMS = 1536
 
 
-def get_bedrock_client(settings: Settings):
-    """Create a Bedrock Runtime client."""
-    return boto3.client("bedrock-runtime", region_name=settings.region)
+def get_openai_client(settings: Settings) -> OpenAI:
+    """Create an OpenAI client."""
+    return OpenAI(api_key=settings.openai_api_key.get_secret_value())
 
 
-def embed_text(client, model_id: str, text: str) -> list[float]:
-    """Embed a single text using Bedrock Titan Embed v2."""
-    response = client.invoke_model(
-        modelId=model_id,
-        body=json.dumps({
-            "inputText": text,
-            "dimensions": 1024,
-            "normalize": True,
-        }),
+def embed_texts(client: OpenAI, texts: list[str]) -> list[list[float]]:
+    """Embed a batch of texts using the OpenAI embeddings API."""
+    response = client.embeddings.create(
+        model=OPENAI_EMBEDDING_MODEL,
+        input=texts,
+        dimensions=OPENAI_EMBEDDING_DIMS,
     )
-    result = json.loads(response["body"].read())
-    return result["embedding"]
+    return [item.embedding for item in response.data]
+
+
+def embed_text(client: OpenAI, text: str) -> list[float]:
+    """Embed a single text using the OpenAI embeddings API."""
+    return embed_texts(client, [text])[0]
 
 
 def _embed_and_store(
     driver: Driver,
-    client,
-    model_id: str,
+    client: OpenAI,
     label: str,
     id_prop: str,
     text_prop: str,
@@ -63,10 +67,13 @@ def _embed_and_store(
     # Process in batches.
     for i in range(0, total, EMBED_BATCH_SIZE):
         batch = records[i : i + EMBED_BATCH_SIZE]
-        updates = []
-        for row in batch:
-            embedding = embed_text(client, model_id, row["text"])
-            updates.append({"id": row["id"], "embedding": embedding})
+        texts = [row["text"] for row in batch]
+        embeddings = embed_texts(client, texts)
+
+        updates = [
+            {"id": row["id"], "embedding": emb}
+            for row, emb in zip(batch, embeddings)
+        ]
 
         # Write batch back to Neo4j.
         driver.execute_query(
@@ -85,15 +92,14 @@ def _embed_and_store(
 
 def embed_descriptions(driver: Driver, settings: Settings) -> None:
     """Generate embeddings for Requirement and Defect description fields."""
-    client = get_bedrock_client(settings)
-    model_id = settings.embedding_model_id
+    client = get_openai_client(settings)
 
-    print(f"Using model: {model_id} (region: {settings.region})\n")
+    print(f"Using model: {OPENAI_EMBEDDING_MODEL} ({OPENAI_EMBEDDING_DIMS} dims)\n")
 
     start = time.monotonic()
 
     req_count = _embed_and_store(
-        driver, client, model_id,
+        driver, client,
         label="Requirement",
         id_prop="requirement_id",
         text_prop="description",
@@ -101,7 +107,7 @@ def embed_descriptions(driver: Driver, settings: Settings) -> None:
     print(f"  [OK] Embedded {req_count} Requirement descriptions.\n")
 
     defect_count = _embed_and_store(
-        driver, client, model_id,
+        driver, client,
         label="Defect",
         id_prop="defect_id",
         text_prop="description",

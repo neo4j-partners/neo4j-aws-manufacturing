@@ -30,8 +30,8 @@ INDEXES: list[tuple[str, str]] = [
 
 # Vector index definitions: (index_name, label, property, dimensions).
 VECTOR_INDEXES: list[tuple[str, str, str, int]] = [
-    ("requirementEmbeddings", "Requirement", "embedding", 1024),
-    ("defectEmbeddings", "Defect", "embedding", 1024),
+    ("requirementEmbeddings", "Requirement", "embedding", 1536),
+    ("defectEmbeddings", "Defect", "embedding", 1536),
 ]
 
 

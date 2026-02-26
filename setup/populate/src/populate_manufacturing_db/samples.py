@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from neo4j import Driver
+from openai import OpenAI
 
+from .config import Settings
+from .embedder import embed_text, get_openai_client, OPENAI_EMBEDDING_MODEL, OPENAI_EMBEDDING_DIMS
 from .formatting import _W, banner, cypher, header, table, val
 
 
@@ -279,14 +282,59 @@ def _vector_defects(driver: Driver, limit: int) -> None:
 
 
 # ---------------------------------------------------------------------------
+# 9. Semantic search with OpenAI embeddings
+# ---------------------------------------------------------------------------
+
+_SEMANTIC_Q = """\
+CALL db.index.vector.queryNodes(
+    'requirementEmbeddings', $top_k, $embedding
+) YIELD node, score
+RETURN node.name AS requirement,
+       substring(node.description, 0, 80) AS description,
+       node.type AS type,
+       score AS similarity
+ORDER BY score DESC
+LIMIT $limit"""
+
+
+def _semantic_search(driver: Driver, client: OpenAI, limit: int) -> None:
+    query = "battery thermal protection"
+    header(
+        "9. Semantic Search (OpenAI Embeddings)",
+        f'Embed a text query with OpenAI and find the most similar requirements.\n'
+        f'  Query: "{query}"',
+    )
+    cypher(_SEMANTIC_Q)
+    embedding = embed_text(client, query)
+    try:
+        rows, _, _ = driver.execute_query(
+            _SEMANTIC_Q, embedding=embedding, top_k=limit + 1, limit=limit,
+        )
+    except Exception:
+        print("  (vector index not available — run 'load' first)\n")
+        return
+    if not rows:
+        print("  (no results — run 'load' first)\n")
+        return
+    table(
+        ["Similarity", "Requirement", "Type", "Description"],
+        [[f"{r['similarity']:.4f}", val(r["requirement"], 25),
+          r["type"], val(r["description"], 40)] for r in rows],
+    )
+
+
+# ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
 
 
-def run_all_samples(driver: Driver, sample_size: int = 10) -> None:
+def run_all_samples(driver: Driver, settings: Settings, sample_size: int = 10) -> None:
     """Run all sample queries with formatted output."""
+    client = get_openai_client(settings)
+
     banner("Manufacturing Product Development \u2014 Sample Queries")
-    print(f"\n  Sample size: {sample_size} rows per section\n")
+    print(f"\n  Sample size: {sample_size} rows per section")
+    print(f"  Embedding model: {OPENAI_EMBEDDING_MODEL} ({OPENAI_EMBEDDING_DIMS} dims)\n")
 
     _product_overview(driver)
     _requirement_traceability(driver, sample_size)
@@ -296,6 +344,7 @@ def run_all_samples(driver: Driver, sample_size: int = 10) -> None:
     _test_coverage(driver, sample_size)
     _vector_requirements(driver, sample_size)
     _vector_defects(driver, sample_size)
+    _semantic_search(driver, client, sample_size)
 
     print(f"{'#' * _W}")
     print("  All samples complete.")
