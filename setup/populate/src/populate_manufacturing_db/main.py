@@ -114,14 +114,14 @@ def samples_cmd() -> None:
 
     print(f"Connecting to {settings.neo4j_uri}...")
     with _connect(settings) as driver:
-        run_all_samples(driver, sample_size=settings.sample_size)
+        run_all_samples(driver, settings, sample_size=settings.sample_size)
 
 
 @app.command("test-queries")
 def test_queries_cmd(
     top_k: int = typer.Option(5, help="Number of results per query."),
 ) -> None:
-    """Run semantic similarity and hybrid search test queries (requires Bedrock)."""
+    """Run semantic similarity and hybrid search test queries (requires OpenAI API key)."""
     from .test_queries import run_test_queries
 
     settings = Settings()  # type: ignore[call-arg]

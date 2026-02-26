@@ -1,4 +1,4 @@
-"""Configuration: load Neo4j and AWS credentials from .env and resolve data directory."""
+"""Configuration: load Neo4j and OpenAI credentials from .env and resolve data directory."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ def _find_env_file() -> Path:
 
 
 class Settings(BaseSettings):
-    """Neo4j connection and AWS Bedrock settings loaded from .env."""
+    """Neo4j connection and OpenAI settings loaded from .env."""
 
     model_config = SettingsConfigDict(
         env_file=_find_env_file(),
@@ -36,9 +36,8 @@ class Settings(BaseSettings):
 
     data_dir: DirectoryPath = _DATA_DIR  # type: ignore[assignment]
 
-    # AWS Bedrock — used during the embedding phase of `load`.
-    embedding_model_id: str = "amazon.titan-embed-text-v2:0"
-    region: str = "us-west-2"
+    # OpenAI — used during the embedding phase of `load`.
+    openai_api_key: SecretStr
 
     # Number of rows to show per section in the `samples` command.
     sample_size: int = 10
