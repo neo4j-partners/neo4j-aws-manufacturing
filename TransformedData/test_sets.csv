@@ -82,3 +82,23 @@ TS_18_21,Lightning Protection Tests
 TS_18_22,Load Distribution Tests
 TS_18_23,Leakage Current Monitoring Tests
 TS_18_24,Potential Separation Tests
+TS_20_1,PDU Power Distribution Tests
+TS_20_2,PDU Precharge and Contactor Tests
+TS_21_1,Inverter Power and Efficiency Tests
+TS_21_2,Inverter Thermal Management Tests
+TS_22_1,E-Machine Power Tests
+TS_22_2,E-Machine Cooling and Housing Tests
+TS_30_1,Suspension Spring and Damper Tests
+TS_30_2,Adaptive Damping Tests
+TS_31_1,Brake Discs and Pads Tests
+TS_40_1,Body and Corrosion Protection Tests
+TS_40_2,Aerodynamics and Drag Tests
+TS_41_1,Dashboard and Displays Tests
+TS_42_1,Seat Comfort and Adjustment Tests
+TS_42_2,Seat Safety and Airbag Tests
+TS_43_1,Headlamp and Low Beam Tests
+TS_43_2,Interior and Ambient Lighting Tests
+TS_50_1,Infotainment Display Tests
+TS_50_2,Navigation and Maps Tests
+TS_51_1,Telematics Connectivity Tests
+TS_51_2,Remote Diagnostics Tests

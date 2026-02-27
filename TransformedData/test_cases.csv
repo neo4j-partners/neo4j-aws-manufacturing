@@ -242,3 +242,45 @@ TC_18_23_1,Leakage Current Measurement Tests,Planned,"Test lab, BMS hardware, le
 TC_18_23_2,Shutdown Tests,Planned,"Test lab, BMS hardware, leakage current tester",72,09/14/2025,09/17/2025,Software Engineer,I-300
 TC_18_24_1,HV/LV Separation Tests,Planned,"Test lab, measuring instruments",48,09/18/2025,09/20/2025,Electrical Engineer,I-300
 TC_18_24_2,Ground Loop Tests,Planned,"Test lab, measuring instruments",48,09/21/2025,09/23/2025,Electrical Engineer,I-300
+TC_20_1_1,Channel Current Rating,Planned,High current load test rig,48,02/10/2025,02/12/2025,Electrical Engineer,I-300
+TC_20_1_2,Fuse and Disconnect,Passed,"Test lab, PDU unit",24,02/13/2025,02/14/2025,Test Engineer,I-400
+TC_20_1_3,Multi-Channel Distribution,In Progress,"Test lab, load simulator",72,02/15/2025,,Test Engineer,I-300
+TC_20_2_1,Precharge Timing,Passed,"Test lab, oscilloscope, HV supply",24,02/18/2025,02/19/2025,Electrical Engineer,I-400
+TC_20_2_2,Contactor Endurance,Planned,Contactor test rig,96,02/20/2025,02/24/2025,Test Engineer,I-300
+TC_21_1_1,Continuous Power,Planned,Dyno test bench,72,03/01/2025,03/04/2025,Power Electronics Engineer,I-300
+TC_21_1_2,Efficiency Map,Passed,"Dyno, power analyzer",48,03/05/2025,03/07/2025,Test Engineer,I-400
+TC_21_2_1,Thermal Cycling,Planned,Climate chamber,168,03/10/2025,03/17/2025,Thermal Engineer,I-300
+TC_21_2_2,Overtemperature Derating,Passed,"Test lab, thermal chamber",48,03/18/2025,03/20/2025,Thermal Engineer,I-400
+TC_22_1_1,Torque and Power Curve,Planned,Dyno test bench,96,03/22/2025,03/26/2025,Test Engineer,I-300
+TC_22_1_2,Peak Power Duration,Passed,"Dyno, data acquisition",24,03/27/2025,03/28/2025,Test Engineer,I-400
+TC_22_2_1,Cooling Circuit Leak,Planned,Pressure test rig,24,03/29/2025,03/30/2025,Test Engineer,I-300
+TC_22_2_2,Resolver Signal,Passed,"Test lab, oscilloscope",16,03/31/2025,03/31/2025,Electrical Engineer,I-400
+TC_30_1_1,Spring Rate and Travel,Planned,Kinematics test rig,48,04/05/2025,04/07/2025,Chassis Engineer,I-300
+TC_30_1_2,Damper Force Velocity,Passed,Damper test rig,72,04/08/2025,04/11/2025,Test Engineer,I-400
+TC_30_2_1,Mode Switching,Planned,"Vehicle, chassis ECU",24,04/12/2025,04/13/2025,Software Engineer,I-300
+TC_30_2_2,Road Response,Passed,"Test track, data logger",48,04/14/2025,04/16/2025,Chassis Engineer,I-400
+TC_31_1_1,Disc Thickness and Runout,Planned,Measuring station,16,04/20/2025,04/21/2025,Quality Engineer,I-300
+TC_31_1_2,Brake Pad Friction,Passed,Friction test rig,72,04/22/2025,04/25/2025,Material Engineer,I-400
+TC_31_1_3,NVH and Squeal,Planned,"Brake dyno, NVH rig",48,04/26/2025,04/28/2025,Test Engineer,I-300
+TC_40_1_1,Cathodic Dip Coating,Planned,Coating test facility,168,05/01/2025,05/08/2025,Material Engineer,I-300
+TC_40_1_2,Perforation Corrosion,Passed,Salt spray chamber,336,05/09/2025,05/23/2025,Corrosion Engineer,I-400
+TC_40_2_1,Wind Tunnel CW,Planned,Wind tunnel,96,05/25/2025,05/29/2025,Aerodynamics Engineer,I-300
+TC_40_2_2,Underbody and Shutters,Passed,"Wind tunnel, pressure taps",48,05/30/2025,06/01/2025,Aerodynamics Engineer,I-400
+TC_41_1_1,Display Brightness and Contrast,Planned,"Test bench, photometer",24,06/05/2025,06/06/2025,Infotainment Engineer,I-300
+TC_41_1_2,HUD Alignment,Passed,HUD test fixture,16,06/07/2025,06/08/2025,Test Engineer,I-400
+TC_42_1_1,Adjustment Range and Memory,Planned,"Test bench, seat fixture",24,06/10/2025,06/11/2025,Interior Engineer,I-300
+TC_42_1_2,Heating and Cooling,Passed,"Climate chamber, seat",48,06/12/2025,06/14/2025,Test Engineer,I-400
+TC_42_2_1,Airbag Compatibility,Planned,Crash test facility,48,06/15/2025,06/17/2025,Safety Engineer,I-300
+TC_42_2_2,Belt and Pretensioner,Passed,"Test rig, dummy",72,06/18/2025,06/21/2025,Safety Engineer,I-400
+TC_43_1_1,Low Beam and High Beam,Planned,Photometric lab,48,06/25/2025,06/27/2025,Lighting Engineer,I-300
+TC_43_1_2,ECE-R112 Compliance,Passed,Optical bench,24,06/28/2025,06/29/2025,Test Engineer,I-400
+TC_43_2_1,Ambient Zones and Color,Planned,"Test bench, spectrometer",16,06/30/2025,07/01/2025,Interior Engineer,I-300
+TC_43_2_2,Trunk and Reading Lights,Passed,"Test bench, lux meter",8,07/02/2025,07/02/2025,Test Engineer,I-400
+TC_50_1_1,Touch and Rotary Response,Planned,"Test bench, HMI rig",24,07/05/2025,07/06/2025,Infotainment Engineer,I-300
+TC_50_1_2,Voice Control Recognition,Passed,"Test bench, acoustic room",48,07/07/2025,07/09/2025,Software Engineer,I-400
+TC_50_2_1,Offline Map and Routing,Planned,"Test bench, navigation",24,07/10/2025,07/11/2025,Software Engineer,I-300
+TC_50_2_2,Traffic and POI Integration,Passed,"Test bench, connectivity",32,07/12/2025,07/14/2025,Infotainment Engineer,I-400
+TC_51_1_1,Modem and eSIM Activation,Planned,"Test bench, network simulator",48,07/18/2025,07/20/2025,Telematics Engineer,I-300
+TC_51_1_2,OTA Update Flow,Passed,"Test bench, backend",72,07/21/2025,07/24/2025,Software Engineer,I-400
+TC_51_2_1,Remote Fault Read,Planned,"Test bench, backend",24,07/25/2025,07/26/2025,Diagnostics Engineer,I-300
+TC_51_2_2,Service Scheduling Integration,Passed,"Test bench, CRM",16,07/27/2025,07/28/2025,Telematics Engineer,I-400
