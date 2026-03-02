@@ -42,8 +42,6 @@ Ground your responses in the actual data from the manufacturing traceability gra
 
 **External Available from an Endpoint:** Enabled
 
-![Agent Configuration](images/aura_agents.png)
-
 ## Step 3: Add Cypher Template Tools
 
 Click **Add Tool** and select **Cypher Template** for each of the following tools:
