@@ -164,14 +164,18 @@ _NODE_DEFINITIONS: list[tuple[str, str, str]] = [
 ]
 
 # ---------------------------------------------------------------------------
-# Derived node loading (MaturityLevel, Resource from TestCase data)
+# Derived node loading (MaturityLevel from milestone data, Resource from TestCase)
 # ---------------------------------------------------------------------------
 
-_DERIVED_MATURITY_LEVEL = """
-MATCH (tc:TestCase)
-WHERE tc.i_stage IS NOT NULL AND tc.i_stage <> ''
-WITH DISTINCT tc.i_stage AS stage
-MERGE (ml:MaturityLevel {name: stage})
+# MaturityLevel is derived from the ternary requirements_test_sets_milestone.csv
+# Each unique milestone_id becomes a MaturityLevel node
+_DERIVED_MATURITY_LEVEL_QUERY = """
+UNWIND $batch AS row
+MERGE (ml:MaturityLevel {name: row['milestone_id']})
+"""
+
+_COUNT_MATURITY_LEVELS = """
+MATCH (ml:MaturityLevel)
 RETURN count(ml) AS created
 """
 
@@ -243,9 +247,9 @@ _REL_DEFINITIONS: list[tuple[str, str, str]] = [
         "test_case_defect.csv",
         """
         UNWIND $batch AS row
-        MATCH (tc:TestCase {test_case_id: row['test_case_id']})
         MATCH (d:Defect {defect_id: row['defect_id']})
-        MERGE (tc)-[:DETECTED]->(d)
+        MATCH (tc:TestCase {test_case_id: row['test_case_id']})
+        MERGE (d)-[:DETECTED]->(tc)
         """,
     ),
     (
@@ -258,35 +262,34 @@ _REL_DEFINITIONS: list[tuple[str, str, str]] = [
         MERGE (ch)-[:CHANGE_AFFECTS_REQ]->(r)
         """,
     ),
-    (
-        "REQUIRES_ML (Requirement → Milestone)",
-        "requirements_test_sets_milestone.csv",
-        """
-        UNWIND $batch AS row
-        MATCH (r:Requirement {requirement_id: row['requirement_id']})
-        MATCH (m:Milestone {milestone_id: row['milestone_id']})
-        MERGE (r)-[:REQUIRES_ML]->(m)
-        """,
-    ),
-    (
-        "REQUIRES_FLAWLESS_TEST_SET (Requirement → TestSet with milestone)",
-        "requirements_test_sets_milestone.csv",
-        """
-        UNWIND $batch AS row
-        MATCH (r:Requirement {requirement_id: row['requirement_id']})
-        MATCH (ts:TestSet {test_set_id: row['test_set_id']})
-        MERGE (r)-[rel:REQUIRES_FLAWLESS_TEST_SET]->(ts)
-        SET rel.milestone_id = row['milestone_id']
-        """,
-    ),
 ]
 
 # Derived relationships
-_TESTCASE_MATURITY = """
-MATCH (tc:TestCase)
-WHERE tc.i_stage IS NOT NULL AND tc.i_stage <> ''
-MATCH (ml:MaturityLevel {name: tc.i_stage})
-MERGE (tc)-[:REQUIRES_ML]->(ml)
+
+# (Milestone)-[:REQUIRES_ML]->(MaturityLevel)
+# Each Milestone links to the MaturityLevel with the same name (derived from milestone_id)
+_MILESTONE_MATURITY = """
+MATCH (m:Milestone)
+MATCH (ml:MaturityLevel {name: m.milestone_id})
+MERGE (m)-[:REQUIRES_ML]->(ml)
+"""
+
+# (MaturityLevel)-[:REQUIRES_FLAWLESS_TEST_SET]->(TestSet)
+# Derived from requirements_test_sets_milestone.csv: MaturityLevel (milestone_id) -> TestSet
+_MATURITY_TESTSET_QUERY = """
+UNWIND $batch AS row
+MATCH (ml:MaturityLevel {name: row['milestone_id']})
+MATCH (ts:TestSet {test_set_id: row['test_set_id']})
+MERGE (ml)-[:REQUIRES_FLAWLESS_TEST_SET]->(ts)
+"""
+
+# (MaturityLevel)-[:ML_FOR_REQ]->(Requirement)
+# Derived from requirements_test_sets_milestone.csv: MaturityLevel (milestone_id) -> Requirement
+_MATURITY_REQUIREMENT_QUERY = """
+UNWIND $batch AS row
+MATCH (ml:MaturityLevel {name: row['milestone_id']})
+MATCH (r:Requirement {requirement_id: row['requirement_id']})
+MERGE (ml)-[:ML_FOR_REQ]->(r)
 """
 
 _TESTCASE_RESOURCE = """
@@ -323,8 +326,12 @@ def load_nodes(driver: Driver, data_dir: Path) -> None:
         print(f"  [OK] Loaded {len(records)} {label} nodes.")
 
     # Derived nodes
-    print("Creating MaturityLevel nodes (from TestCase.i_stage)...")
-    records, _, _ = driver.execute_query(_DERIVED_MATURITY_LEVEL)
+    print("Creating MaturityLevel nodes (from requirements_test_sets_milestone.csv)...")
+    milestone_records = read_csv(data_dir, "requirements_test_sets_milestone.csv")
+    # Deduplicate by milestone_id before creating nodes
+    unique_milestones = {r['milestone_id']: r for r in milestone_records}.values()
+    _run_in_batches(driver, list(unique_milestones), _DERIVED_MATURITY_LEVEL_QUERY)
+    records, _, _ = driver.execute_query(_COUNT_MATURITY_LEVELS)
     print(f"  [OK] Created {records[0]['created']} MaturityLevel nodes.")
 
     print("Creating Resource nodes (from TestCase.resources)...")
@@ -340,10 +347,20 @@ def load_relationships(driver: Driver, data_dir: Path) -> None:
         _run_in_batches(driver, records, query)
         print(f"  [OK] Loaded {len(records)} {rel_type} relationships.")
 
-    # Derived relationships
-    print("Creating TestCase → MaturityLevel relationships...")
-    driver.execute_query(_TESTCASE_MATURITY)
+    # Derived relationships from requirements_test_sets_milestone.csv
+    milestone_records = read_csv(data_dir, "requirements_test_sets_milestone.csv")
+
+    print("Creating Milestone → MaturityLevel relationships (REQUIRES_ML)...")
+    driver.execute_query(_MILESTONE_MATURITY)
     print("  [OK] Created REQUIRES_ML relationships.")
+
+    print("Creating MaturityLevel → TestSet relationships (REQUIRES_FLAWLESS_TEST_SET)...")
+    _run_in_batches(driver, milestone_records, _MATURITY_TESTSET_QUERY)
+    print("  [OK] Created REQUIRES_FLAWLESS_TEST_SET relationships.")
+
+    print("Creating MaturityLevel → Requirement relationships (ML_FOR_REQ)...")
+    _run_in_batches(driver, milestone_records, _MATURITY_REQUIREMENT_QUERY)
+    print("  [OK] Created ML_FOR_REQ relationships.")
 
     print("Creating TestCase → Resource relationships...")
     driver.execute_query(_TESTCASE_RESOURCE)
