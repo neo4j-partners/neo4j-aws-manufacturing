@@ -127,32 +127,6 @@ After executing the search, you'll see a visual representation of the knowledge 
 - Click on a relationship to see its type
 - Expand nodes to see more connections
 
-### Step 5: Access Graph Data Science
-
-To analyze the graph structure, click on the **Graph Data Science** button in the left toolbar. This opens the data science panel where you can apply graph algorithms.
-
-![Graph Data Science button in the left toolbar](images/graph_data_science.png)
-
-### Step 6: Apply Degree Centrality Algorithm
-
-Click **Add algorithm** and select **Degree Centrality** from the dropdown. This algorithm measures the number of incoming and outgoing relationships for each node, helping identify the most connected nodes in your graph.
-
-Click **Apply algorithm** to run the analysis.
-
-![Degree Centrality algorithm selection and Apply algorithm button](images/degree_centrality.png)
-
-### Step 7: Size Nodes Based on Scores
-
-After the algorithm completes, you'll see a notification showing how many scores were added. Click **Size nodes based on scores** to visually represent the centrality - nodes with more connections will appear larger.
-
-![Size nodes based on scores option after algorithm completion](images/size_nodes.png)
-
-### Step 8: Analyze the Results
-
-The graph now displays nodes sized according to their degree centrality scores. Components with more requirements or technology domains with more components appear larger, making it easy to visually identify the most significant entities in your manufacturing dataset.
-
-![Graph visualization with nodes sized by degree centrality scores](images/degree_centality_graph.png)
-
 
 ## Next Steps
 
