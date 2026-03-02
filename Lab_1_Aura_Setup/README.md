@@ -103,17 +103,17 @@ Click **Connect to instance** to connect to your database.
 
 ### Step 3: Search for Product Traceability Relationships
 
-In the search bar, build a pattern to explore the relationships between products, technology domains, and components. Type `Product`, then select the **PRODUCT_HAS_DOMAIN** relationship, followed by **TechnologyDomain**, then **DOMAIN_HAS_COMPONENT**, and finally **Component**.
+In the search bar, build a pattern to explore the relationships between product, technology domain, component, requirements, and test sets. Type `Product`, then select the **PRODUCT_HAS_DOMAIN** relationship, followed by **TechnologyDomain** and **DOMAIN_HAS_COMPONENT** relationship, followed by **Component** and **COMPONENT_HAS_REQ** relationship, followed by **Requirement**, then **TESTED_WITH**, and finally **TestSet**.
 
-This creates the pattern: `Product — PRODUCT_HAS_DOMAIN → TechnologyDomain — DOMAIN_HAS_COMPONENT → Component`
+This creates the pattern: `Product - PRODUCT_HAS_DOMAIN → TechnologyDomain - DOMAIN_HAS_COMPONENT → Component — COMPONENT_HAS_REQ → Requirement — TESTED_WITH → TestSet`
 
-![Search pattern builder showing Product to TechnologyDomain to Component path](images/asset_manager_owns.png)
+![Search pattern builder showing Product to TechnologyDomain to Component path](images/product_technologydomain_component_requirement_testset.png)
 
 ### Step 4: Visualize the Knowledge Graph
 
-After executing the search, you'll see a visual representation of the knowledge graph. The graph shows Product nodes connected to TechnologyDomain nodes through PRODUCT_HAS_DOMAIN relationships, and TechnologyDomain nodes connected to Component nodes through DOMAIN_HAS_COMPONENT relationships. The visualization reveals the product structure — how a product is organized into technology domains containing specific components.
+After executing the search, you'll see a visual representation of the knowledge graph. The graph shows Product nodes connected to TechnologyDomain nodes through PRODUCT_HAS_DOMAIN relationships, and TechnologyDomain nodes connected to Component nodes through DOMAIN_HAS_COMPONENT relationships and so on. The visualization reveals the product structure — how a product is organized into technology domains containing specific components, requirements and test sets.
 
-![Knowledge graph visualization showing Product, TechnologyDomain, and Component nodes with relationships](images/company_graph.png)
+![Knowledge graph visualization showing Product, TechnologyDomain, and Component nodes with relationships](images/graph.png)
 
 **Tips for Exploring:**
 
