@@ -96,7 +96,7 @@ RETURN
     size(reqs2) AS component_2_requirements
 ```
 
-![Find Shared Requirements Tool](images/agent_tool_shared_risk.png)
+![Find Shared Requirements Tool](images/agent_tool_shared_requirements.png)
 
 ## Step 4: Add Similarity Search Tool
 
@@ -115,8 +115,7 @@ Click **Add Tool** and select **Similarity Search** to configure a semantic sear
 ![Similarity Search Tool](images/similiarity_search_tool.png)
 
 ## Step 5: Add Text2Cypher Tool
-
-Click **Add Tool** and select **Text2Cypher** to enable natural language to Cypher translation:
+A **Text2Cypher** tool is already provided by default. It enables natural language to Cypher translation. Change the name and description as follows:
 
 **Tool Name:** `query_database`
 
