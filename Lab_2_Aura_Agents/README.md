@@ -196,10 +196,10 @@ Other Text2Cypher questions to try:
 - "How many defects have high severity?" - Generates a query to count Defect nodes filtered by severity.
 - "What changes have been proposed that affect battery requirements?" - Creates a query to find Change nodes connected to requirements.
 
-## Step 7: (Optional) Deploy to API
+## Step 7: (Optional) Use the Aura Agent in your application
 
 Deploy your agent to a production endpoint:
-1. Click **Deploy** in the Aura Agent console
+1. Enable external access
 2. Copy the authenticated API endpoint
 3. Use the endpoint in your applications
 
