@@ -73,30 +73,27 @@ RETURN
 
 ![Add Cypher Template Tool](images/add_cypher_template_tool.png)
 
-### Tool 2: Find Shared Requirements Between Components
+### Tool 2: Get Test Coverage of a Component
 
-**Tool Name:** `find_shared_requirements`
+**Tool Name:** `get_test_coverage`
 
-**Description:** Find requirements or characteristics that two components have in common based on their technology domain or testing patterns.
+**Description:** Get the test coverage for a component by showing all its requirements and the test sets assigned to each requirement. Returns a table indicating which requirements are covered by tests and which are not.
 
 **Parameters:**
-- `component1` (string) - First component name
-- `component2` (string) - Second component name
+- `component_name` (string) - The component name to check test coverage for (e.g., "HVB_3900", "PDU_1500")
 
 **Cypher Query:**
 ```cypher
-MATCH (c1:Component {name: $component1})-[:COMPONENT_HAS_REQ]->(r:Requirement)
-WITH c1, collect(r) AS reqs1
-MATCH (c2:Component {name: $component2})-[:COMPONENT_HAS_REQ]->(r2:Requirement)
-WITH c1, c2, reqs1, collect(r2) AS reqs2
-RETURN
-    c1.name AS component_1,
-    c2.name AS component_2,
-    size(reqs1) AS component_1_requirements,
-    size(reqs2) AS component_2_requirements
+MATCH (comp:Component {name: $component_name})-[:COMPONENT_HAS_REQ]->(req:Requirement)
+OPTIONAL MATCH (req)-[:TESTED_WITH]->(ts:TestSet)
+RETURN req.name AS requirement,
+       req.description AS requirement_description,
+       COLLECT(ts.name) AS test_sets,
+       CASE WHEN COUNT(ts) > 0 THEN 'Covered' ELSE 'Not Covered' END AS coverage_status
+ORDER BY coverage_status DESC, req.name
 ```
 
-![Find Shared Requirements Tool](images/agent_tool_shared_requirements.png)
+![Get Test Coverage Tool](images/agent_tool_test_coverage.png)
 
 ## Step 4: Add Similarity Search Tool
 
