@@ -137,10 +137,10 @@ Click **Add Tool** and select **Similarity Search** to configure a semantic sear
 **Configuration:**
 - **Embedding provider:** `openai`
 - **Embedding model:** `text-embedding-ada-002`
-- **Vector Index:** `requirement_embeddings`
+- **Vector Index:** `requirementEmbeddings`
 - **Top K:** 5
 
-![Similarity Search Tool](images/similiarity_search_tool.png)
+![Similarity Search Tool](images/similarity_search_tool.png)
 
 ## Step 5: Add Text2Cypher Tool
 A **Text2Cypher** tool is already provided by default. It enables natural language to Cypher translation. Change the name and description as follows:
@@ -163,13 +163,10 @@ Test your agent with the sample questions below. After each test, observe:
 
 Try asking: **"Tell me about the HVB_3900 component and any defects found"**
 
-The agent recognizes this matches the `get_component_overview` template and executes the pre-defined Cypher query with "HVB_3900" as the parameter.
+The agent recognizes this matches the `get_component_overview` template and executes the pre-defined Cypher query with "HVB_3900" as the parameter. We can see the agent's reasoning for selecting the `get_component_overview` tool and how it synthesized the response into a readable format:
 
-![Component Query Agent](images/apple_query_agent.png)
-
-We can see the agent's reasoning for selecting the `get_component_overview` tool and how it synthesized the response into a readable format:
-
-![Component Agent Reasoning](images/apple_agent_reasoning.png)
+![Component Query Agent](images/query_get_component_overview_1.png)
+![Component Agent Reasoning](images/query_get_component_overview_2.png)
 
 Other Cypher template questions to try:
 - "What is the test coverage for the HVB_3900 component?" - Uses the `get_test_coverage` template to show requirements and their assigned test sets.
@@ -181,7 +178,7 @@ Try asking: **"What do the requirements say about thermal management and cooling
 
 The agent uses the similarity search tool to find semantically relevant passages from requirement descriptions, then synthesizes insights about thermal management specifications.
 
-![Thermal Management Agent Response](images/ai_ml_agent_response.png)
+![Thermal Management Agent Response](images/query_semantic_search.png)
 
 Other semantic search questions to try:
 - "Find requirements related to safety monitoring" - Searches for passages discussing safety standards and monitoring systems.
@@ -191,9 +188,9 @@ Other semantic search questions to try:
 
 Try asking: **"Which component has the most requirements?"**
 
-The agent translates this natural language question into a Cypher query that counts requirements per component and returns the highest.
+The agent translates this natural language question into a Cypher query.
 
-![Component Requirements](images/company_risk_factors.png)
+![Component Requirements](images/query_text2cypher.png)
 
 Other Text2Cypher questions to try:
 - "How many defects have high severity?" - Generates a query to count Defect nodes filtered by severity.
