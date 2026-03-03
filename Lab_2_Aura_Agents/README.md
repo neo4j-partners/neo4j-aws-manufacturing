@@ -71,7 +71,7 @@ RETURN
     defects AS detected_defects
 ```
 
-![Add Cypher Template Tool](images/add_cypher_template_tool.png)
+![Add Cypher Template Tool](images/agent_tool_component_overview.png)
 
 ### Tool 2: Get Test Coverage of a Component
 
