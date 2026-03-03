@@ -95,6 +95,37 @@ ORDER BY coverage_status DESC, req.name
 
 ![Get Test Coverage Tool](images/agent_tool_test_coverage.png)
 
+### Tool 3: Get Milestone Readiness
+
+**Tool Name:** `get_milestone_readiness`
+
+**Description:** Get what needs to be done to achieve a milestone. Returns all open test sets required for the milestone, open defects that need to be closed, and the estimated effort in hours.
+
+**Parameters:**
+- `milestone_id` (string) - The milestone ID to check (e.g., "m_200", "m_300", "m_400")
+
+**Cypher Query:**
+```cypher
+MATCH (m:Milestone {milestone_id: $milestone_id})-[:REQUIRES_ML]->(ml:MaturityLevel)-[:REQUIRES_FLAWLESS_TEST_SET]->(ts:TestSet)
+OPTIONAL MATCH (ts)-[:CONTAINS_TEST_CASE]->(tc:TestCase)
+WHERE tc.status IN ['Planned', 'In Progress', 'Failed']
+OPTIONAL MATCH (d:Defect)-[:DETECTED]->(tc2:TestCase)<-[:CONTAINS_TEST_CASE]-(ts)
+WHERE d.status IN ['New', 'In Progress']
+WITH m, ts, 
+     COLLECT(DISTINCT {name: tc.name, status: tc.status, effort_hours: tc.duration_hours}) AS open_test_cases,
+     COLLECT(DISTINCT {defect_id: d.defect_id, description: d.description, severity: d.severity, status: d.status}) AS open_defects
+RETURN 
+    m.milestone_id AS milestone,
+    m.deadline AS deadline,
+    ts.name AS test_set,
+    [t IN open_test_cases WHERE t.name IS NOT NULL] AS open_test_cases,
+    REDUCE(s = 0.0, t IN open_test_cases | s + COALESCE(t.effort_hours, 0.0)) AS test_effort_hours,
+    [d IN open_defects WHERE d.defect_id IS NOT NULL] AS open_defects
+ORDER BY ts.name
+```
+
+![Get Milestone Readiness Tool](images/agent_tool_milestone_readiness.png)
+
 ## Step 4: Add Similarity Search Tool
 
 Click **Add Tool** and select **Similarity Search** to configure a semantic search tool using the existing vector index:
@@ -141,7 +172,8 @@ We can see the agent's reasoning for selecting the `get_component_overview` tool
 ![Component Agent Reasoning](images/apple_agent_reasoning.png)
 
 Other Cypher template questions to try:
-- "Compare the requirements between HVB_3900 and PDU_1500" - Uses the `find_shared_requirements` template to compare two components.
+- "What is the test coverage for the HVB_3900 component?" - Uses the `get_test_coverage` template to show requirements and their assigned test sets.
+- "What needs to be done to achieve milestone m_200?" - Uses the `get_milestone_readiness` template to show open test sets, defects, and effort estimates.
 
 ### Semantic Search Questions
 
