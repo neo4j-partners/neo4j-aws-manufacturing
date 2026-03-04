@@ -70,7 +70,7 @@ After your Aura instance is running, restore the pre-built knowledge graph:
 ### Step 2: Restore to Aura
 
 1. Go to your instance in the [Aura Console](https://console.neo4j.io)
-2. Click on your instance, select the **Restore from backup file** tab, and drag the `manufacturing_demo.dump` file you downloaded into the dialog:
+2. Click on your instance, select the **Restore from backup file** tab, and drag the `manufacturing_demo.backup` file you downloaded into the dialog:
 
    ![Restore from backup file tab with drag and drop area](images/restore_backup.png)
 
