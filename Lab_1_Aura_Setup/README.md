@@ -64,7 +64,7 @@ After your Aura instance is running, restore the pre-built knowledge graph:
 ### Step 1: Download the Dump File
 
 1. Download the dump file from GitHub:
-   - **Download link:** [manufacturing_demo.dump](https://github.com/neo4j-partners/neo4j-aws-manufacturing/raw/refs/heads/main/Lab_1_Aura_Setup/data/manufacturing_demo.dump)
+   - **Download link:** [manufacturing_demo.backup](https://github.com/neo4j-partners/neo4j-aws-manufacturing/raw/refs/heads/main/Lab_1_Aura_Setup/data/manufacturing_demo.backup)
 2. Save the file to a location you can easily find (e.g., your Downloads folder)
 
 ### Step 2: Restore to Aura
