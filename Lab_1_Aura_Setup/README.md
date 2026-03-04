@@ -76,6 +76,47 @@ After your Aura instance is running, restore the pre-built knowledge graph:
 
 3. Wait for the restore to complete - your instance will restart with the manufacturing knowledge graph
 
+### Step 3: Create Indexes and Constraints
+
+The backup does not include indexes or constraints. After the restore completes, open the **Query** console for your instance and run the following Cypher statements:
+
+1. Go to [console.neo4j.io](https://console.neo4j.io) and click on your instance
+2. Select **Query** in the left sidebar to open the query console
+3. Copy and paste the following Cypher and click **Run**:
+
+```cypher
+// Uniqueness constraints
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Product) REQUIRE n.product_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:TechnologyDomain) REQUIRE n.technology_domain_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Component) REQUIRE n.component_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Requirement) REQUIRE n.requirement_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:TestSet) REQUIRE n.test_set_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:TestCase) REQUIRE n.test_case_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Defect) REQUIRE n.defect_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Change) REQUIRE n.change_proposal_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Milestone) REQUIRE n.milestone_id IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:MaturityLevel) REQUIRE n.name IS UNIQUE;
+CREATE CONSTRAINT IF NOT EXISTS FOR (n:Resource) REQUIRE n.name IS UNIQUE;
+
+// Property indexes for common lookups
+CREATE INDEX idx_requirement_type IF NOT EXISTS FOR (n:Requirement) ON (n.type);
+CREATE INDEX idx_testcase_status IF NOT EXISTS FOR (n:TestCase) ON (n.status);
+CREATE INDEX idx_defect_severity IF NOT EXISTS FOR (n:Defect) ON (n.severity);
+CREATE INDEX idx_defect_status IF NOT EXISTS FOR (n:Defect) ON (n.status);
+CREATE INDEX idx_change_status IF NOT EXISTS FOR (n:Change) ON (n.status);
+
+// Vector indexes for semantic search (1536 dimensions, cosine similarity)
+CREATE VECTOR INDEX requirementEmbeddings IF NOT EXISTS
+FOR (n:Requirement) ON (n.embedding)
+OPTIONS {indexConfig: {`vector.dimensions`: 1536, `vector.similarity_function`: 'cosine'}};
+
+CREATE VECTOR INDEX defectEmbeddings IF NOT EXISTS
+FOR (n:Defect) ON (n.embedding)
+OPTIONS {indexConfig: {`vector.dimensions`: 1536, `vector.similarity_function`: 'cosine'}};
+```
+
+> **Note:** All statements use `IF NOT EXISTS` so they are safe to run multiple times.
+
 The backup contains:
 - Product development data for the R2D2 automotive product
 - Components across technology domains (Electric Powertrain, Chassis, Body, Infotainment)

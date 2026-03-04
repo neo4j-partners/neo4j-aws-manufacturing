@@ -127,13 +127,11 @@ You'll need a laptop with a web browser. Your browser will need to be able to ac
 
 ---
 
-## Architecture
-
-![Workshop Architecture](TransformedData/architecture.png)
-
-## Knowledge Graph Data Model
+## Data Architecture
 
 The knowledge graph represents an automotive manufacturing product development workflow. It tracks how a vehicle product (codenamed "R2D2") moves from high-level product requirements through component design, testing, defect tracking, and change management. The domain is centered around a high-voltage battery system for an electric powertrain.
+
+![Manufacturing Data Model — Graph Schema](TransformedData/manufacturing-data-model.png)
 
 - **Products & Technology Domains**: Product R2D2 with domains like Electric Powertrain, Chassis, Body, Infotainment
 - **Components**: Hardware components such as HVB_3900 (High-Voltage Battery), PDU_1500 (Power Distribution Unit), INV_2300 (Inverter)
@@ -150,10 +148,6 @@ Example questions you can answer:
 - "Which requirements are affected by change proposal CP001?"
 
 The knowledge graph captures the full **traceability chain** from product definition through testing to defect resolution, a core concern in automotive manufacturing (ISO 26262, ASPICE). This architecture enables multiple retrieval strategies.
-
-### Graph Structure
-
-![Manufacturing Data Model — Graph Schema](TransformedData/manufacturing-data-model.png)
 
 For detailed documentation of the data model including node properties, relationship sources, traversal patterns, and embedding targets, see [TransformedData/DATA_ARCHITECTURE.md](TransformedData/DATA_ARCHITECTURE.md).
 

@@ -1,0 +1,36 @@
+[project]
+name = "graphrag-validator"
+version = "0.1.0"
+description = "Validate Lab 5 GraphRAG setup (Neo4j + AWS Bedrock)"
+requires-python = ">=3.11"
+dependencies = [
+    "neo4j-graphrag[bedrock] @ git+https://github.com/neo4j-partners/neo4j-graphrag-python.git@bedrock-embeddings",
+    "neo4j>=5.17.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.0.0",
+    "typer>=0.15.0",
+    "rich>=13.0.0",
+]
+
+[project.scripts]
+graphrag-validator = "graphrag_validator.main:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/graphrag_validator"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP", "SIM"]
+ignore = ["E501"]

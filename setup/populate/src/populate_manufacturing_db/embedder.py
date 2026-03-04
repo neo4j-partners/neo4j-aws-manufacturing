@@ -14,7 +14,7 @@ from .config import Settings
 EMBED_BATCH_SIZE = 100
 
 # Default model and dimensions.
-OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
+OPENAI_EMBEDDING_MODEL = "text-embedding-ada-002"
 OPENAI_EMBEDDING_DIMS = 1536
 
 
@@ -28,7 +28,6 @@ def embed_texts(client: OpenAI, texts: list[str]) -> list[list[float]]:
     response = client.embeddings.create(
         model=OPENAI_EMBEDDING_MODEL,
         input=texts,
-        dimensions=OPENAI_EMBEDDING_DIMS,
     )
     return [item.embedding for item in response.data]
 
