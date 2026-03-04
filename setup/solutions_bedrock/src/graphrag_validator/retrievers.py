@@ -22,7 +22,7 @@ EXPECTED_NODE_COUNTS = {
     "Product": 1,
     "TechnologyDomain": 4,
     "Component": 12,
-    "Requirement": 70,
+    "Requirement": 1,
     "Chunk": 1,  # at least 1; exact count varies by chunking params
 }
 
