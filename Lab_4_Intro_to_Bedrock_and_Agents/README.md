@@ -78,15 +78,14 @@ Key concepts:
 
 ### Step 8: Clone the Git Repository
 
-1. With the `labs` folder open, click on the **Git icon** in the left sidebar (it looks like a diamond/branch symbol)
-2. Click **Clone a Repository** button
-3. In the "Clone Git Repository" dialog, enter the repository URL:
+1. Open a new terminal window
+2. Execute
    ```
-   https://github.com/neo4j-partners/neo4j-aws-manufacturing
+   cd labs/
+   git clone https://github.com/neo4j-partners/neo4j-aws-manufacturing
    ```
-4. Leave "Open README files" checked and click **Clone** to download the lab materials
 
-![Clone Git Repository](images/09_clone_git_repository.png)
+![Clone Git Repository](images/09_clone_git_repository_2.png)
 
 ## Introduction to Agents
 
