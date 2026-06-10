@@ -13,7 +13,7 @@ The pre-built backup you restored in Lab 1 already contains the complete knowled
 
 1. Go to [console.neo4j.io](https://console.neo4j.io)
 2. Select **Agents** in the left-hand menu
-3. Click on **Create Agent**
+3. Click on **Create from scratch**
 
 ![Aura Agents](images/aura_agents.png)
 
